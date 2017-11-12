@@ -12,7 +12,9 @@ class PagesController extends Controller
 {
     public function home()
     {
-    	return view('pages/home');
+
+        /*if else er kaj for user*/
+    	return view('home');
     }
 
     public function about()
@@ -112,6 +114,8 @@ class PagesController extends Controller
 
         return redirect('/add_book')->with('message', 'Book Added!');
     }
+
+    
 
     public function request(Request $req)
     {

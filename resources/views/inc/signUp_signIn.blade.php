@@ -1,11 +1,10 @@
-<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="container">    
+          <div class="modal-header">    
             <div class="panel-title" style="margin-top: 30px"><b>Sign In</b>
             </div>
-            <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a>
-            </div>
+      
           </div>    
           <div style="padding-top:25px" class="panel-body" >
             <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
@@ -17,7 +16,8 @@
                 <option>Type of user</option>
                 <option>Teacher</option>
                 <option>Student</option>
-                <option>Librarian</option>          
+                <option>Librarian</option>
+                <option>Admin</option>          
               </select>
             </div>
             <div style="margin-bottom: 25px" class="input-group">
@@ -32,13 +32,13 @@
             <div class="input-group">
               <div class="checkbox">
                 <label>
-                  <input id="login-remember" type="checkbox" name="remember" value="1""> Remember me
+                  <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
                 </label>
               </div>
             </div>
             <div style="margin-top:10px" class="form-group">
               <div class="col-sm-12 controls">
-                <a id="btn-login" href="#" class="btn btn-success btn-block" margin: 0 auto;" >Login</a>
+                <a id="btn-login" href="#" class="btn btn-success btn-block">Login</a>
               </div>
               <br>
               <br>
@@ -57,6 +57,7 @@
   </div>
 
 
+
   <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -69,45 +70,52 @@
         <div style="padding-top:25px" class="panel-body" >
           <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
           </div>
-          <form id="loginform" class="form-horizontal" role="form">
+
+          <!-- {{ Form::open(array('url' => 'register', 'method' => 'post')) }} -->
+
+          <form action="{{ route('user_register') }}" method="post" id="signUpform" class="form-horizontal" role="form">
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Enter your name">       
+              <input id="login-username" type="text" class="form-control" name="name" placeholder="Enter your name">       
             </div> 
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Enter your email">       
+              <input id="login-username" type="email" class="form-control" name="email" placeholder="Enter your email">       
             </div> 
-
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <select class="form-control" id="sel1" placeholder="password">
+              <select class="form-control" id="sel1" name="type">
                 <option>Type of user</option>
-                <option>Teacher</option>
-                <option>Student</option>
-                <option>Librarian</option>          
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>          
               </select>
             </div>
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Type password">       
+              <input id="login-username" type="number" class="form-control" name="phone" placeholder="Phone Number">       
+            </div>
+
+            <div style="margin-bottom: 25px" class="input-group">
+              <span class="input-group-addon"></span>
+              <input id="login-username" type="password" class="form-control" name="password" placeholder="Type password">       
             </div> 
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Re-type password">       
+              <input id="login-username" type="password" class="form-control" name="confirm-password" placeholder="Re-type password">       
             </div> 
 
-
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div style="margin-top:10px" class="form-group">
               <div class="col-sm-12 controls">
-                <a id="btn-login" href="#" class="btn btn-success btn-block" margin: 0 auto;" >Sign Up</a>
+                <button type="submit" class="btn btn-success btn-block" name="submit" id="submit">Sign Up</button>
               </div>
             </div>
-          </form>     
+          </form> 
+          <!-- {{ Form::close() }}     -->
         </div>  
       </div>  
     </div>
