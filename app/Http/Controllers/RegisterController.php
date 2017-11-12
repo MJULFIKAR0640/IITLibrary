@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -20,7 +21,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    // use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -28,16 +29,6 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -51,7 +42,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'type' => 'required',
-            'phone' => 'required|phone:BD|min:11|unique:users',
+            'phone' => 'required|min:11|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -72,4 +63,24 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+        public function register(Request $request)
+    {
+
+       //Validates data
+        $this->validator($request->all())->validate();
+
+       //Create seller
+        $user = $this->create($request->all());
+
+        $this->guard()->login($user);
+
+       //Redirects sellers
+        return redirect($this->redirectPath);
+    }
+
+    protected function guard()
+   {
+       return Auth::guard('web');
+   }
 }
