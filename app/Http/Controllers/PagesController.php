@@ -34,7 +34,7 @@ class PagesController extends Controller
 
     public function request_new_book()
     {
-    	return view('pages/request_new_book');
+    	return view('Teacher/request_new_book');
     }
 
     public function return_or_remark_book()
@@ -87,11 +87,7 @@ class PagesController extends Controller
     {
 
         $Requestedbook =DB::table('requestedbooks')->get()          ;
-        return view('pages/new_book_request',compact('Requestedbook'));
-
-
-
-
+        return view('Teacher/new_book_request',compact('Requestedbook'));
 
     }
 

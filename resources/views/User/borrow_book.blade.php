@@ -11,11 +11,7 @@ Search-book
 		<div class="row">
 			<h2 style="margin-bottom: 20px" class="d-none d-sm-block text-center">Serach Book</h2>
 			<hr>
-
-			<main class="col-sm-12" role="main">
-
-
-            
+			<main class="col-sm-12" role="main">        
 				<div class="jumbotron">
 					<form>
 						<div class="form-row">
@@ -128,7 +124,6 @@ Search-book
 								<button class="btn btn-primary" data-toggle="modal" data-target="#borrow">Borrow</button>
 							</td>
 						</tr>
-
 					</tbody>
 				</table>
 			</div>

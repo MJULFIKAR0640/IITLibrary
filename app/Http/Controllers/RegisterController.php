@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Illuminate\Support\Facades\Input;
+use Hash;
+use Redirect;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -21,22 +25,7 @@ class RegisterController extends Controller
     |
     */
 
-    // use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+  /*protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
@@ -47,13 +36,9 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
+
+     
+    public function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
@@ -62,25 +47,55 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
+    }*/
+
+
+
+    
+
+/*    public function register(Request $request) {
+        $rules = array (
+            'name' => 'required|unique:users|alpha_num|min:4',
+            'email' => 'required|unique:users|email',
+            'type' => 'required',
+            'phone' => 'required|min:11|unique:users',
+            'password' => 'required|min:6|confirmed' 
+        );
+        $validator = Validator::make ( Input::all (), $rules );
+        if ($validator->fails ()) {
+            return Redirect::back ()->withErrors ( $validator, 'register' )->withInput ();
+        } else {
+            $user = new User ();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->type = $request->type;
+            $user->phone = $request->phone;
+            $user->password = Hash::make ( $request->password);
+            $user->remember_token = $request->get ( '_token' );
+            $user->save ();
+            return Redirect::back ();
+        }
     }
+*/
 
-        public function register(Request $request)
-    {
 
-       //Validates data
-        $this->validator($request->all())->validate();
+    // public function register(Request $request)
+    // {
 
-       //Create seller
-        $user = $this->create($request->all());
+    //    //Validates data
+    //     $this->validator($request->all())->validate();
 
-        $this->guard()->login($user);
+    //    //Create seller
+    //     $user = $this->create($request->all());
 
-       //Redirects sellers
-        return redirect($this->redirectPath);
-    }
+    //     $this->guard()->login($user);
 
-    protected function guard()
+    //    //Redirects sellers
+    //     return redirect($this->redirectPath);
+    // }
+
+/*    protected function guard()
    {
        return Auth::guard('web');
-   }
+   }*/
 }

@@ -71,20 +71,19 @@
           <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
           </div>
 
-          <!-- {{ Form::open(array('url' => 'register', 'method' => 'post')) }} -->
 
-          <form action="{{ route('user_register') }}" method="post" id="signUpform" class="form-horizontal" role="form">
+          <form action="/signup" method="POST" id="signUpform" class="form-horizontal" role="form">
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="text" class="form-control" name="name" placeholder="Enter your name">       
+              <input id="login-username" type="text" class="form-control" name="name" placeholder="Enter your name" required>       
             </div> 
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="email" class="form-control" name="email" placeholder="Enter your email">       
+              <input id="login-username" type="email" class="form-control" name="email" placeholder="Enter your email" required>       
             </div> 
 
-            <div style="margin-bottom: 25px" class="input-group">
+            <div style="margin-bottom: 25px" class="input-group" required>
               <span class="input-group-addon"></span>
               <select class="form-control" id="sel1" name="type">
                 <option>Type of user</option>
@@ -95,17 +94,17 @@
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="number" class="form-control" name="phone" placeholder="Phone Number">       
+              <input id="login-username" type="number" class="form-control" name="phone" placeholder="Phone Number" required>       
             </div>
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="password" class="form-control" name="password" placeholder="Type password">       
+              <input id="login-username" type="password" class="form-control" name="password" placeholder="Type password" required>       
             </div> 
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
-              <input id="login-username" type="password" class="form-control" name="confirm-password" placeholder="Re-type password">       
+              <input id="login-username" type="password" class="form-control" name="confirm-password" placeholder="Re-type password" required>       
             </div> 
 
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
