@@ -11,7 +11,7 @@
         <div class="panel-heading"><h4><b>Sign Up</b></h4></div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route('register_user') }}">
+          <form class="form-horizontal" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
 
             <div style="margin-bottom: 15px" class="input-group">

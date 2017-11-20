@@ -4,13 +4,13 @@
 Manage-Book
 @endsection
 @section('content')
-@include('nav.studentTeacherNav')
+@include('nav.librarianNav')
 <div class="container">
  <h2 style="margin-bottom: 20px" class="d-none d-sm-block text-center">Add book</h2>
 
  <hr>
 
- <form action="store" method="POST">
+ <form action="{{route('storeBook')}}" method="POST">
 
 
   <div class="form-group">

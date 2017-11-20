@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-	IIT-Library
+Search-book
 @endsection
-
 @section('content')
-	@include('nav.adminNav')
-	
+@include('nav.studentTeacherNav')
 
 </br>
 <div class="container-fluid">
@@ -16,9 +14,6 @@
       <hr>
 
       <main class="col-sm-12" role="main">
-
-
-            
         <div class="jumbotron">
           <form>
             <div class="form-row">
@@ -139,4 +134,3 @@
   </div>
 </div>
 @endsection
-

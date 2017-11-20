@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+@include('nav.commonNav')
+</br>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading"><h4><b>Log In</b></h4></div>
 
                 <div class="panel-body">
+                    
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
@@ -66,4 +69,5 @@
         </div>
     </div>
 </div>
+
 @endsection

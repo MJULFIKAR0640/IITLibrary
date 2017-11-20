@@ -38,4 +38,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->type =='librarian')
+            return redirect()->intended("/homeLibrarian");
+
+        else if($user->type == 'admin')
+            return redirect()->intended("/homeAdmin");
+
+        else if($user->type == 'student')
+            return redirect()->intended("/homeUser");
+
+        else if($user->type == 'teacher')
+            return redirect()->intended("/homeUser");
+
+    }
 }

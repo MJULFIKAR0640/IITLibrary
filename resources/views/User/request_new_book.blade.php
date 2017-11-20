@@ -10,7 +10,7 @@ Manage-Book
 
  <hr>
 
- <form action="request" method="POST">
+ <form action="{{route('storeRequestedBook')}}" method="POST">
 
   <div class="form-group">
     <label for="section">Section</label>

@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-	IIT-Library
+Search-book
 @endsection
-
 @section('content')
-	@include('nav.adminNav')
-	
+@include('nav.studentTeacherNav')
 
 </br>
 <div class="container-fluid">
@@ -16,13 +14,10 @@
       <hr>
 
       <main class="col-sm-12" role="main">
-
-
-            
         <div class="jumbotron">
           <form>
             <div class="form-row">
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-9">
 
                 <input type="text" class="form-control" id="usr">
               </div>
@@ -69,7 +64,7 @@
                 </div>
                 <div style="margin-top:10px" class="form-group">
                   <div class="col-sm-12 controls">
-                    <a id="btn-login" href="#" class="btn btn-success btn-block" margin: 0 auto;" >Submit</a>
+                    <a id="btn-login" href="#" class="btn btn-success btn-block" margin: 0 auto;>Submit</a>
                   </div>
                   <br>
                   <br>
@@ -139,4 +134,3 @@
   </div>
 </div>
 @endsection
-

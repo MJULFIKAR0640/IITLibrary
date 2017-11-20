@@ -34,7 +34,7 @@ Manage-Book
 
                     <div class="form-row">
                         <div class="form-group ml-auto col-md-3">
-                            <a href="#" class="btn btn-block btn-primary">Add Book</a>
+                            <a href="{{route ('add_book')}}"class="btn btn-block btn-primary">Add Book</a>
                         </div>
                     </div>
                 </form>

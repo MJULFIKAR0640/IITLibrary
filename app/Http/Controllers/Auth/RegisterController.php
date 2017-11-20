@@ -6,8 +6,6 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
-use Redirect;
 
 class RegisterController extends Controller
 {
@@ -22,7 +20,7 @@ class RegisterController extends Controller
     |
     */
 
-    // use RegistersUsers;
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -41,27 +39,25 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
-    protected function signup(Request $request){
-        return view("auth.register");
-    }
-
-    protected function registerUser(Request $request){
-        $this->validate($request, [
-            'name' => 'required|string|min:4',
-            'email' => 'required|string|email|unique:users',
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
             'type' => 'required',
             'phone' => 'required|string|min:11|unique:users',
-            'password' => 'required|confirmed|min:6'
+            'password' => 'required|min:6|confirmed',
         ]);
+    }
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->type = $request->type;
-        $user->phone = $request->phone;
-        $user->password = $request->password;
-        $user->save ();
-        return Redirect::back ();
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'type' => $data['type'],
+            'phone' => $data['phone'],
+            'password' => bcrypt($data['password']),
+        ]);
     }
 }
