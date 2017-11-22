@@ -149,15 +149,4 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 });
 
 Auth::routes();
-<<<<<<< HEAD
-=======
 
-Route::post('user/register', ['as' => 'user_register', 'uses' => 'RegisterController@register']);
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> master
