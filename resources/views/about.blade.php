@@ -5,7 +5,7 @@
 @endsection
  
 @section('content')
-	@include('nav.commonNav')
+
 </br>
 
 	<div class="container">

@@ -37,8 +37,6 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $Book =new Book();
-
-        $Book->book_id= $request->book_id;
         $Book->book_name= $request->book_name;
         $Book->author= $request->author_name;
         $Book->section= $request->section;

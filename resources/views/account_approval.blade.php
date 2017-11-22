@@ -5,7 +5,7 @@ Account-approval
 @endsection
 
 @section('content')
-@include('nav.adminNav')
+
 <div class="container-fluid">
     <div class="row">
 

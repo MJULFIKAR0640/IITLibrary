@@ -83,10 +83,6 @@ Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
 	'uses' => 'RequestedBookController@store'
 	]);
 
-	Route::post('/searchbook',[
-	'as' => 'searchbook',
-	'uses'=> 'SearchController@search'
-	]);
 });
 
 

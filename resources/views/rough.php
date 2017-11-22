@@ -125,4 +125,13 @@ Search-book
 
 
 
- 
+ @if(Auth::user()->type =='admin')
+          <script>window.location = "/homeAdmin";</script>
+
+        @elseif(Auth::user()->type =='librarian')
+          <script>window.location = "/homeLibrarian";</script>
+
+        @elseif(Auth::user()->type ==('student'|| 'teacher'))
+          <script>window.location = "/homeUser";</script>
+
+        @endif
