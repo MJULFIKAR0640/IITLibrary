@@ -71,19 +71,35 @@
           <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
           </div>
 
+<<<<<<< HEAD
 
           <form action="/signup" method="POST" id="signUpform" class="form-horizontal" role="form">
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
               <input id="login-username" type="text" class="form-control" name="name" placeholder="Enter your name" required>       
+=======
+          <!-- {{ Form::open(array('url' => 'register', 'method' => 'post')) }} -->
+
+          <form action="{{ route('user_register') }}" method="post" id="signUpform" class="form-horizontal" role="form">
+            <div style="margin-bottom: 25px" class="input-group">
+              <span class="input-group-addon"></span>
+              <input id="login-username" type="text" class="form-control" name="name" placeholder="Enter your name">       
+>>>>>>> master
             </div> 
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
+<<<<<<< HEAD
               <input id="login-username" type="email" class="form-control" name="email" placeholder="Enter your email" required>       
             </div> 
 
             <div style="margin-bottom: 25px" class="input-group" required>
+=======
+              <input id="login-username" type="email" class="form-control" name="email" placeholder="Enter your email">       
+            </div> 
+
+            <div style="margin-bottom: 25px" class="input-group">
+>>>>>>> master
               <span class="input-group-addon"></span>
               <select class="form-control" id="sel1" name="type">
                 <option>Type of user</option>
@@ -94,17 +110,29 @@
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
+<<<<<<< HEAD
               <input id="login-username" type="number" class="form-control" name="phone" placeholder="Phone Number" required>       
+=======
+              <input id="login-username" type="number" class="form-control" name="phone" placeholder="Phone Number">       
+>>>>>>> master
             </div>
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
+<<<<<<< HEAD
               <input id="login-username" type="password" class="form-control" name="password" placeholder="Type password" required>       
+=======
+              <input id="login-username" type="password" class="form-control" name="password" placeholder="Type password">       
+>>>>>>> master
             </div> 
 
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"></span>
+<<<<<<< HEAD
               <input id="login-username" type="password" class="form-control" name="confirm-password" placeholder="Re-type password" required>       
+=======
+              <input id="login-username" type="password" class="form-control" name="confirm-password" placeholder="Re-type password">       
+>>>>>>> master
             </div> 
 
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

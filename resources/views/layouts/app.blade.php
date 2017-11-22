@@ -2,6 +2,7 @@
 @include('inc.header')
 <!DOCTYPE html>
 <body>
+<<<<<<< HEAD
 
 	@if(Auth::user()->type =='admin')
 	    @include('nav.adminNav')
@@ -11,6 +12,8 @@
 	    @include('nav.studentTeacherNav')
 	@endif
 
+=======
+>>>>>>> master
     <div id="app">
         @yield('content')
     </div>

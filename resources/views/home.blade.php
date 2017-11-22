@@ -4,12 +4,24 @@
 	IIT-Library
 @endsection
 
+@section('title')
+	IIT-Library
+@endsection
+
 @section('content')
+<<<<<<< HEAD
+=======
+	@include('nav.commonNav')
+>>>>>>> master
   @include('inc.signUp_signIn')
 	
 
 
+<<<<<<< HEAD
 </br>
+=======
+  </br>
+>>>>>>> master
 <div class="container-fluid">
   <div class="container-fluid">
     <div class="row">

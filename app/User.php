@@ -9,22 +9,22 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'users';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'type', 'phone', 'password',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-
-    public function hastype($types){
-        return in_array($this->type, $types);
-    }
-  
-    public function isStudent(){
-        return $this->type == 'student';
-    }
-    public function isTeacher(){
-        return $this->type == 'teacher';
-    }
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }
 
