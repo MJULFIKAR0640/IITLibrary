@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-	@include('nav.adminNav')
-	
+
 
 </br>
 <div class="container-fluid">

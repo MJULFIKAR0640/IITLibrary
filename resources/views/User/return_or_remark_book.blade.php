@@ -4,7 +4,7 @@
 Manage-Book
 @endsection
 @section('content')
-@include('nav.studentTeacherNav')
+
 <div class="container-fluid">
   <div class="row">
     <main class="col-sm-12" role="main">

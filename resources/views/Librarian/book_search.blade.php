@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-	@include('nav.librarianNav')
 	
-
 </br>
 <div class="container-fluid">
   <div class="container-fluid">

@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.blank')
 
 @section('content')
-@include('nav.commonNav')
+
 </br>
 <div class="container">
     <div class="row">

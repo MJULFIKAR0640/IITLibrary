@@ -6,6 +6,11 @@ Route::get('/', [
 	'uses' => 'PagesController@home'
 ]);
 
+Route::get('/home', [
+	'as' => 'home',
+	'uses' => 'PagesController@home'
+]);
+
 Route::get('/about', [
 	'as' => 'about',
 	'uses' => 'PagesController@about'
@@ -77,60 +82,13 @@ Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
 	'as' => 'storeRequestedBook',
 	'uses' => 'RequestedBookController@store'
 	]);
+
+	Route::post('/searchbook',[
+	'as' => 'searchbook',
+	'uses'=> 'SearchController@search'
+	]);
 });
 
-/*Route::group(["middleware" => ['auth','student']], function () {
-
-    Route::get('/homeStudent', [
-	'as' => 'homeStudent',
-	'uses' => 'PagesController@homeStudent'
-	]);
-
-	Route::get('/request_new_book', [
-	'as' => 'request_new_book',
-	'uses' => 'PagesController@request_new_book'
-	]);
-
-	Route::get('/remark_book', [
-		'as' => 'remark_book',
-		'uses' => 'PagesController@remark_book'
-	]);
-
-	Route::get('/return_book', [
-	'as' => 'return_book',
-	'uses' => 'PagesController@reserve_book'
-	]);
-
-	Route::get('/reserve_book', [
-		'as' => 'reserve_book',
-		'uses' => 'PagesController@reserve_book'
-	]);
-
-	Route::get('/return_or_remark_book', [
-		'as' => 'return_or_remark_book',
-		'uses' => 'PagesController@return_or_remark_book'
-	]);
-
-	Route::get('/extend_time', [
-		'as' => 'extend_time',
-		'uses' => 'PagesController@extend_time'
-	]);
-
-	Route::get('/borrow_book', [
-		'as' => 'borrow_book',
-		'uses' => 'PagesController@borrow_book'
-	]);
-
-	Route::get('/requestBook', [
-	'as' => 'requestBook',
-	'uses' => 'RequestedBookController@create'
-	]);
-
-	Route::post('/sotreRequestedBook', [
-	'as' => 'storeRequestedBook',
-	'uses' => 'RequestedBookController@store'
-	]);
-});*/
 
 Route::group(["middleware" => ['auth', 'librarian']], function () {
 

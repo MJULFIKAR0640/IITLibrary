@@ -4,7 +4,7 @@
 Search-book
 @endsection
 @section('content')
-@include('nav.studentTeacherNav')
+
 
 </br>
 <div class="container-fluid">
@@ -12,14 +12,13 @@ Search-book
     <div class="row">
       <h2 style="margin-bottom: 20px" class="d-none d-sm-block text-center">Serach Book</h2>
       <hr>
-
       <main class="col-sm-12" role="main">
         <div class="jumbotron">
-          <form>
+          <form action="{{route('searchbook')}}" method="POST">
             <div class="form-row">
               <div class="form-group col-md-9">
 
-                <input type="text" class="form-control" id="usr">
+                <input type="text" class="form-control" id="usr" name="keyword">
               </div>
 
               <div class="form-group col-md-2">
@@ -27,16 +26,19 @@ Search-book
               </div>
 
               <div class="container-fluid">
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Book Name</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Author's Name</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Sector</label>
+                <div class="radio"></div>
+                <label class="radio-inline"><input type="radio" checked="" value="book" name="optradio">Search by Book Name</label>
+                <label class="radio-inline"><input type="radio" value="author" name="optradio">Search by Author's Name</label>
+                <label class="radio-inline"><input type="radio" value="section" name="optradio">Search by Section</label>
               </div>
 
-              
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             </div>
           </form>
         </div>
       </div>
+
       <div class="modal fade" id="borrow" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -76,56 +78,22 @@ Search-book
         </div>
       </div>
 
-
-
       <div>
         <table class="table table-bordered table-responsive">
           <thead>
             <tr>
               <th>#</th>
+              <th>Section</th>
               <th>Book</th>
               <th>Athor</th>
-              <th>Publicatiion</th>
-              <th>Edition</th>
-              <th>Copy Available</th>            
-              <th>Action</th>
+              <th>Publication</th>
+              <th>Edition</th>            
+              <th>Copy Available</th> 
+              <th>Action</th>                        
             </tr>
-          </thead>
+          </thead>       
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Database Management System</td>
-              <td>XYZ</td>
-              <td>Schame Series</td>
-              <td>3rd Edition</td>
-              <td>5 copies</td>
 
-              <td>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#borrow">Borrow</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Database Management System</td>
-              <td>XYZ</td>
-              <td>Schame Series</td>
-              <td>3rd Edition</td>
-              <td>5 copies</td>
-              <td>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#borrow">Borrow</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Database Management System</td>
-              <td>XYZ</td>
-              <td>Schame Series</td>
-              <td>3rd Edition</td>
-              <td>5 copies</td>
-              <td>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#borrow">Borrow</button>
-              </td>
-            </tr>
 
           </tbody>
         </table>

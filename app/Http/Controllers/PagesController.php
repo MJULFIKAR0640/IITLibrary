@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 use App\Book;
 use App\Requestedbook;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class PagesController extends Controller
 {
@@ -24,19 +24,16 @@ class PagesController extends Controller
 
     public function homeLibrarian()
     {
-
         return view('Librarian.homeLibrarian');
     }
 
     public function homeStudent()
     {
-
         return view('Student.homeStudent');
     }
 
     public function homeTeacher()
     {
-
         return view('Teacher.homeTeacher');
     }
 

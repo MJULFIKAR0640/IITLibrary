@@ -4,7 +4,7 @@
 Extend-time
 @endsection
 @section('content')
-@include('nav.studentTeacherNav')
+
 <div class="container-fluid">
 	<div class="row">
 

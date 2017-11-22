@@ -4,7 +4,7 @@
 Manage-Book
 @endsection
 @section('content')
-@include('nav.studentTeacherNav')
+
 <div class="container">
  <h2 style="margin-bottom: 20px" class="d-none d-sm-block text-center">Request New Book</h2>
 

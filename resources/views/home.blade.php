@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.blank')
 
 @section('title')
 	IIT-Library
 @endsection
 
 @section('content')
-	@include('nav.commonNav')
   @include('inc.signUp_signIn')
 	
 

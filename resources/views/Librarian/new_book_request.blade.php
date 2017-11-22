@@ -4,7 +4,7 @@
 Issued-book-list
 @endsection
 @section('content')
-@include('nav.librarianNav')
+
 </br>
 
 <div class="container-fluid">
@@ -30,9 +30,7 @@ Issued-book-list
 					</tr>
 				</thead>
 				
-				<tbody>
-
-					
+				<tbody>				
 					@foreach ($Requestedbook as $value)						
 						<tr>
 							<th>{{$value->id}}</th>
@@ -42,10 +40,7 @@ Issued-book-list
 							<th>{{$value->publication}}</th>
 							<th>{{$value->edition}}</th>						
 						</tr>
-
-						@endforeach
-
-
+					@endforeach
 				</tbody>
 			</table>
 		</div>

@@ -4,7 +4,7 @@
 Search-book
 @endsection
 @section('content')
-@include('nav.studentTeacherNav')
+
 </br>
 <div class="container-fluid">
 	<div class="container-fluid">
