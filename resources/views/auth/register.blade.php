@@ -1,6 +1,4 @@
 @extends('layouts.blank')
-
-
 @section('content')
 
 </br>
@@ -51,7 +49,11 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div style="margin-top:10px" class="form-group">
               <div class="col-sm-12 controls">
-                <button type="submit" class="btn btn-success btn-block" name="submit" id="submit">Sign Up</button>
+                <center>
+                  <button type="submit" class="btn btn-primary btn-block" name="submit" id="submit">Sign Up</button>
+                   
+                </center>
+                
               </div>
             </div>
           </form>

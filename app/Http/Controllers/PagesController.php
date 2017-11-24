@@ -8,13 +8,15 @@ use App\Book;
 use App\Requestedbook;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
 
 class PagesController extends Controller
 {
 
     public function home()
     {
-    	return view('home');
+        return view('home');
     }
 
     public function homeAdmin()
@@ -27,6 +29,8 @@ class PagesController extends Controller
         return view('Librarian.homeLibrarian');
     }
 
+<<<<<<< HEAD
+=======
     public function homeStudent()
     {
         return view('Student.homeStudent');
@@ -37,13 +41,59 @@ class PagesController extends Controller
         return view('Teacher.homeTeacher');
     }
 
-    public function homeUser()
+    public function homeUser(Request $request)
     {
 
-        return view('User.homeUser');
+            $result = null;
+
+            $keyword = $request->input('keyword');
+
+            if($request->input('optradio')=="book"){
+                $result =DB::table('books')->where('book_name',$request->keyword)->get();
+                dd($result);
+                return view('User.homeUser', ['result' => $result]);
+            }
+
+            else if($request->input('optradio') == 'author'){
+                $result =DB::table('books')->where('author',$request->keyword)->get();
+                dd($result);
+                return view('User.homeUser', ['result' => $result]);
+            }
+
+            else if($request->input('optradio')== 'section'){
+                $result =DB::table('books')->where('section',$request->keyword)->get();
+                dd($result);
+                return view('User.homeUser', ['result' => $result]);
+            }
+
+        return view('User.homeUser',['result' => $result]);
     }
 
+>>>>>>> master
 
+    public function homeUser(Request $request) 
+    { 
+        $result = null;
+        $keyword = $request->input('keyword'); 
+     
+        if($request->input('optradio')=="book"){ 
+            $result =DB::table('books')->where('book_name',$request->keyword)->get(); 
+            return view('User.homeUser', ['result' => $result]); 
+        } 
+     
+        else if($request->input('optradio') == 'author'){ 
+            $result =DB::table('books')->where('author',$request->keyword)->get(); 
+            return view('User.homeUser', ['result' => $result]); 
+        } 
+     
+        else if($request->input('optradio')== 'section'){ 
+            $result =DB::table('books')->where('section',$request->keyword)->get(); 
+            return view('User.homeUser', ['result' => $result]); 
+        } 
+     
+        return view('User.homeUser',['result' => $result]); 
+    } 
+    
     public function about()
     {
     	return view('about');
@@ -124,10 +174,20 @@ class PagesController extends Controller
         return view('Librarian.book_search');
     }
 
+    public function book_settings()
+    {
+        return view('Admin.book_configuration');
+    }
+
+    public function add_user()
+    {
+        return view('Admin.add_user');
+    }
+
     public function new_book_request()
     {
         $Requestedbook =DB::table('requestedbooks')->get()          ;
-        return view('Librarian.new_book_request',compact('Requestedbook'));
+        return view('new_book_request',compact('Requestedbook'));
     }
 
 }

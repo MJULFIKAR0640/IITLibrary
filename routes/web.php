@@ -34,6 +34,31 @@ Route::group(["middleware" => ['auth', 'admin']], function () {
 		'uses' => 'PagesController@account_approval'
 	]);
 
+	Route::get('/add_book', [
+	'as' => 'add_book',
+	'uses' => 'BookController@create'
+	]);
+
+	Route::get('/add_user', [
+	'as' => 'add_user',
+	'uses' => 'PagesController@add_user'
+	]);
+
+	Route::get('/book_settings', [
+	'as' => 'book_settings',
+	'uses' => 'PagesController@book_settings'
+	]);
+	
+	Route::get('/manage_book', [
+	'as' => 'manage_book',
+	'uses' => 'PagesController@manage_book'
+	]);
+
+	Route::post('/storeBook', [
+	'as' => 'storeBook',
+	'uses' => 'BookController@store'
+	]);
+
 });
 
 Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
@@ -42,6 +67,11 @@ Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
 	'as' => 'homeUser',
 	'uses' => 'PagesController@homeUser'
 	]);
+
+	Route::post('/searchbook',[ 
+	 'as' => 'searchbook', 
+	 'uses'=> 'PagesController@homeUser' 
+	 ]);
 
 	Route::get('/request_new_book', [
 	'as' => 'request_new_book',
@@ -83,10 +113,6 @@ Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
 	'uses' => 'RequestedBookController@store'
 	]);
 
-	Route::post('/searchbook',[
-	'as' => 'searchbook',
-	'uses'=> 'SearchController@search'
-	]);
 });
 
 
@@ -117,10 +143,7 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 		'uses' => 'PagesController@issued_book_list'
 	]);
 
-	Route::get('/manage_book', [
-	'as' => 'manage_book',
-	'uses' => 'PagesController@manage_book'
-	]);
+
 
 	Route::get('/time_extension_approval', [
 		'as' => 'time_extension_approval',
@@ -141,11 +164,14 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 	'as' => 'add_book',
 	'uses' => 'BookController@create'
 	]);
-
-	Route::post('/storeBook', [
-	'as' => 'storeBook',
-	'uses' => 'BookController@store'
+	
+	Route::get('/manage_book', [
+	'as' => 'manage_book',
+	'uses' => 'PagesController@manage_book'
 	]);
+
+
 });
 
 Auth::routes();
+

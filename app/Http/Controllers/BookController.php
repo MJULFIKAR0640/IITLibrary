@@ -37,8 +37,10 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $Book =new Book();
-
+<<<<<<< HEAD
         $Book->book_id= $request->book_id;
+=======
+>>>>>>> master
         $Book->book_name= $request->book_name;
         $Book->author= $request->author_name;
         $Book->section= $request->section;
@@ -46,7 +48,9 @@ class BookController extends Controller
         $Book->edition= $request->edition;
         $Book->save();
 
-        return redirect()->route('add_book')->with('message', 'Book Added!');
+        Session::flash('success', 'Book added successfully !');
+
+        return redirect()->route('add_book');
     }
 
     /**

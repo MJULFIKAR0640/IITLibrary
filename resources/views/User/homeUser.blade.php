@@ -14,6 +14,7 @@ Search-book
       <hr>
       <main class="col-sm-12" role="main">
         <div class="jumbotron">
+          
           <form action="{{route('searchbook')}}" method="POST">
             <div class="form-row">
               <div class="form-group col-md-9">
@@ -78,6 +79,8 @@ Search-book
         </div>
       </div>
 
+      @if(count($result)>0)
+
       <div>
         <table class="table table-bordered table-responsive">
           <thead>
@@ -93,11 +96,23 @@ Search-book
             </tr>
           </thead>       
           <tbody>
+            @foreach($result as $id => $output)
+              <tr>
+                <td>{{$id+1}}</td>
+                <td>{{$output->section}}</td>
+                <td>{{$output->book_name}}</td>
+                <td>{{$output->author}}</td>
+                <td>{{$output->publication}}</td>
+                <td>{{$output->edition}}</td>
+                <td>2</td>
+                <td><button>Borrow</button></td>
+              </tr>
 
-
+            @endforeach
           </tbody>
         </table>
       </div>
+      @endif
     </main>
   </div>
 </div>

@@ -5,46 +5,56 @@ Manage-Book
 @endsection
 @section('content')
 
+</br>
 <div class="container">
- <h2 style="margin-bottom: 20px" class="d-none d-sm-block text-center">Add book</h2>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h4><b>Add Book</b></h4></div>
 
- <hr>
+        <div class="panel-body" style="margin: 10px">
+          <form class="form-horizontal" action="{{route('storeBook')}}" method="POST">
+            {{ csrf_field() }}
 
- <form action="{{route('storeBook')}}" method="POST">
+            <div class="form-group">
+              <label for="book id">Book ID</label>
+              <input type="text" class="form-control" id="book_id" name="book_id" required>
+            </div>
 
+            <div class="form-group">
+              <label for="book name">Book's Name</label>
+              <input type="text" class="form-control" id="book_name" name="book_name" required>
+            </div>
+            <div class="form-group">
+              <label for="author">Author</label>
+              <input type="text" class="form-control" id="author_name" name="author_name" required>
+            </div>
+            <div class="form-group">
+              <label for="section">Section</label>
+              <input type="text" class="form-control" id="section" name="section" required>
+            </div>
+            <div class="form-group">
+              <label for="publication">Publication</label>
+              <input type="text" class="form-control" id="publication" name="publication" required>
+            </div>
+            <div class="form-group">
+              <label for="edition">Edition</label>
+              <input type="number" class="form-control" id="edition" name="edition" required>
+            </div>
 
-  <div class="form-group">
-    <label for="book id">Book ID</label>
-    <input type="text" class="form-control" id="book_id" name="book_id">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+            <center>
+              <button type="submit" class="btn btn-success btn-block" name="submit" id="submit" style="margin-bottom: 10px">Submit</button>
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="book name">Book's Name</label>
-    <input type="text" class="form-control" id="book_name" name="book_name">
-  </div>
-  <div class="form-group">
-    <label for="author">Author</label>
-    <input type="text" class="form-control" id="author_name" name="author_name">
-  </div>
-  <div class="form-group">
-    <label for="section">Section</label>
-    <input type="text" class="form-control" id="section" name="section">
-  </div>
-  <div class="form-group">
-    <label for="publication">Publication</label>
-    <input type="text" class="form-control" id="publication" name="publication">
-  </div>
-  <div class="form-group">
-    <label for="edition">Edition</label>
-    <input type="number" class="form-control" id="edition" name="edition">
-  </div>
-
-  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-
-  <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
-  
-</form>
 </div>
+
+
 @endsection
 
 

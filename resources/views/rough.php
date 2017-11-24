@@ -125,4 +125,33 @@ Search-book
 
 
 
- 
+ @if(Auth::user()->type =='admin')
+          <script>window.location = "/homeAdmin";</script>
+
+        @elseif(Auth::user()->type =='librarian')
+          <script>window.location = "/homeLibrarian";</script>
+
+        @elseif(Auth::user()->type ==('student'|| 'teacher'))
+          <script>window.location = "/homeUser";</script>
+
+<<<<<<< HEAD
+        @endif
+
+
+
+
+        if(Auth::user()->type ==('student'|| 'teacher')){
+            return $this->homeUser($request);
+        }
+        elseif(Auth::user()->type == 'admin'){
+             return $this->homeAdmin($request);
+        }
+        elseif(Auth::user()->type == 'librarian'){
+             return $this->homeLibrarian($request);        }
+        else{
+            return view('home');    
+        }
+        
+=======
+        @endif
+>>>>>>> master

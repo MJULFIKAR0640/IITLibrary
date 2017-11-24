@@ -1,0 +1,25 @@
+<form method="post" action="...">
+     <div id="wizard">
+         <!-- Tabstrip -->
+         <ul class="nav nav-tabs" role="tablist">
+             <li role="presentation" class="active">
+                 <a href="#personal" role="tab" data-toggle="tab">You</a>
+             </li>
+             <li role="presentation">
+                 <a href="#hobbies" role="tab" data-toggle="tab">Hobbies</a>
+             </li>
+             :
+          </ul>
+ 
+         <!-- Tab panes -->
+         <div class="tab-content">
+             <div role="tabpanel" class="tab-pane active" id="personal">
+                <!-- Input fields -->
+             </div>
+             <div role="tabpanel" class="tab-pane" id="hobbies">
+                <!-- Input fields -->
+             </div>
+             :
+         </div>
+     </div>
+</form>

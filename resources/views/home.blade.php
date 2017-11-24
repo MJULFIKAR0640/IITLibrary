@@ -3,13 +3,13 @@
 @section('title')
 	IIT-Library
 @endsection
+<<<<<<< HEAD
+=======
 
+
+>>>>>>> master
 @section('content')
-  @include('inc.signUp_signIn')
-	
 
-
-</br>
 <div class="container-fluid">
   <div class="container-fluid">
     <div class="row">
@@ -17,8 +17,6 @@
       <hr>
 
       <main class="col-sm-12" role="main">
-
-
             
         <div class="jumbotron">
           <form>

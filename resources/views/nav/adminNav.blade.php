@@ -3,16 +3,23 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
 
-      <li><a href="#">Account Approval</a></li>
-      <li><a href="#">Set due date</a></li>
-      <li><a href="#">Set fine</a></li>
-      <li id="student_info" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage User<span class="caret"></span></a>
+      <li id="student_info" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span style="padding-right: 5px">User Management</span><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Apporeve Request</a></li>
-          <li><a href="#">Delete request</a></li>
+          <li><a href="#">Request Approval</a></li>
+          <li><a href="{{ route('add_user') }}">Add User</a></li>
+          <li><a href="#">Delete User</a></li>    
         </ul>
       </li>
-      
+
+      <li><a href="{{ route('book_settings') }}">Book Configuration</a></li>  
+    
+
+      <li id="student_info" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span style="padding-right: 5px">Settings</span><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Set Days</a></li>
+          <li><a href="#">Set Fine</a></li>
+        </ul>
+      </li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">

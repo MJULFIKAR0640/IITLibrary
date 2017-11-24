@@ -19,7 +19,7 @@ class CreateRequestedbooksTable extends Migration
             $table->string('book_name');
             $table->string('author');
             $table->string('publication');
-            $table->string('edition');
+            $table->string('edition')->unsigned();
             $table->timestamps();
         });
     }
