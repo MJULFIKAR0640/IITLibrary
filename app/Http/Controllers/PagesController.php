@@ -29,18 +29,6 @@ class PagesController extends Controller
         return view('Librarian.homeLibrarian');
     }
 
-<<<<<<< HEAD
-=======
-    public function homeStudent()
-    {
-        return view('Student.homeStudent');
-    }
-
-    public function homeTeacher()
-    {
-        return view('Teacher.homeTeacher');
-    }
-
     public function homeUser(Request $request)
     {
 
@@ -50,49 +38,23 @@ class PagesController extends Controller
 
             if($request->input('optradio')=="book"){
                 $result =DB::table('books')->where('book_name',$request->keyword)->get();
-                dd($result);
                 return view('User.homeUser', ['result' => $result]);
             }
 
             else if($request->input('optradio') == 'author'){
                 $result =DB::table('books')->where('author',$request->keyword)->get();
-                dd($result);
                 return view('User.homeUser', ['result' => $result]);
             }
 
             else if($request->input('optradio')== 'section'){
                 $result =DB::table('books')->where('section',$request->keyword)->get();
-                dd($result);
                 return view('User.homeUser', ['result' => $result]);
             }
 
         return view('User.homeUser',['result' => $result]);
     }
 
->>>>>>> master
 
-    public function homeUser(Request $request) 
-    { 
-        $result = null;
-        $keyword = $request->input('keyword'); 
-     
-        if($request->input('optradio')=="book"){ 
-            $result =DB::table('books')->where('book_name',$request->keyword)->get(); 
-            return view('User.homeUser', ['result' => $result]); 
-        } 
-     
-        else if($request->input('optradio') == 'author'){ 
-            $result =DB::table('books')->where('author',$request->keyword)->get(); 
-            return view('User.homeUser', ['result' => $result]); 
-        } 
-     
-        else if($request->input('optradio')== 'section'){ 
-            $result =DB::table('books')->where('section',$request->keyword)->get(); 
-            return view('User.homeUser', ['result' => $result]); 
-        } 
-     
-        return view('User.homeUser',['result' => $result]); 
-    } 
     
     public function about()
     {
@@ -108,9 +70,6 @@ class PagesController extends Controller
     {
     	return view('Librarian.time_extension_approval');
     }
-
-
-
 
     public function request_new_book()
     {
@@ -142,7 +101,6 @@ class PagesController extends Controller
     {
         return view('User.extend_time');
     }
-
 
     public function account_approval()
     {
@@ -177,6 +135,11 @@ class PagesController extends Controller
     public function book_settings()
     {
         return view('Admin.book_configuration');
+    }
+
+    public function book_settings_update()
+    {
+        return view('Admin.book_configuration_update');
     }
 
     public function add_user()

@@ -1,26 +1,30 @@
 <?php
 
 
-Route::get('/', [
-	'as' => 'home',
-	'uses' => 'PagesController@home'
-]);
 
-Route::get('/home', [
-	'as' => 'home',
-	'uses' => 'PagesController@home'
-]);
-
-Route::get('/about', [
-	'as' => 'about',
-	'uses' => 'PagesController@about'
-]);
 
 Route::post('/request', [
 	'as' => 'request', 
 	'uses' => 'PagesController@request'
 ]);
 
+Route::group(["middleware" => ['guest']], function () {
+	Route::get('/', [
+		'as' => 'home',
+		'uses' => 'PagesController@home'
+	]);
+
+	Route::get('/home', [
+		'as' => 'home',
+		'uses' => 'PagesController@home'
+	]);
+
+
+	Route::get('/about', [
+		'as' => 'about',
+		'uses' => 'PagesController@about'
+	]);
+});
 
 Route::group(["middleware" => ['auth', 'admin']], function () {
 

@@ -3,11 +3,6 @@
 @section('title')
 	IIT-Library
 @endsection
-<<<<<<< HEAD
-=======
-
-
->>>>>>> master
 @section('content')
 
 <div class="container-fluid">

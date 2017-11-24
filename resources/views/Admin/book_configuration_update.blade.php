@@ -17,7 +17,6 @@
               <label for="allowed days">Set allowed days for borrowing</label>
               <input type="number" class="form-control" id="allowed_days" name="allowedDate" required>
             </div>
-
             <div style="margin-bottom: 15px" class="form-group">
               <label for="fine">Set fine for 1 day delay</label>
               <input id="fine_for_delay" type="number" class="form-control" name="delay_fine" required>       

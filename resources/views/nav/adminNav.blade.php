@@ -12,14 +12,6 @@
       </li>
 
       <li><a href="{{ route('book_settings') }}">Book Configuration</a></li>  
-    
-
-      <li id="student_info" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span style="padding-right: 5px">Settings</span><span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Set Days</a></li>
-          <li><a href="#">Set Fine</a></li>
-        </ul>
-      </li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">

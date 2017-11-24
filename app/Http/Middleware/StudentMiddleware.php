@@ -15,6 +15,7 @@ class StudentMiddleware
      */
     public function handle($request, Closure $next)
     {
+        
         if ($request->user()->type != 'student') {
             return abort(403, "No access here, sorry!");
         }

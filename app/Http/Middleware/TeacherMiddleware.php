@@ -15,6 +15,7 @@ class TeacherMiddleware
      */
     public function handle($request, Closure $next)
     {
+        
         if ($request->user()->type != 'teacher') {
             return abort(403, "No access here, sorry!");
         }
