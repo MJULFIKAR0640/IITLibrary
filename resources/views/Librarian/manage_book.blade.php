@@ -17,7 +17,7 @@ Manage-Book
                     <div class="form-row">
 
                         <div class="form-group col-md-3">
-                            <select class="form-control" id="user_role">
+                            <select class="form-control" id="section">
                                 <option>Section</option>
                                 <option>Database</option>
                                 <option>Networking</option>
@@ -44,6 +44,7 @@ Manage-Book
                     <table class="table table-bordered table-responsive col-sm-12">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Book Id</th>
                                 <th>Book</th>
                                 <th>Author</th>
@@ -53,41 +54,25 @@ Manage-Book
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>DU</td>
-                                <td>IIT</td>
-                                <td>1</td>
-                                <td>Software Project Management</td>
+                            @foreach ($Book as $id => $value)            
+                              <tr>
+                                <td>{{$id+1}}</td>
+                                <td>{{$value->book_id}}</td>
+                                <td>{{$value->book_name}}</td>            
+                                <td>{{$value->author}}</td>
+                                <td>{{$value->publication}}</td>
+                                <td>{{$value->edition}}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
+
+                                    <a href="{{route('editBook',$value->id)}}"><button class="btn btn-primary">Edit</button></a>
+                                    <form action="{{('/manageBook/'.$value->id)}}" method="GET" onclick="return confirm('Are you sure to delete?')">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <input type="submit" value="Delete" class="btn btn-danger"> 
+                                    </form>
                                 </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>DU</td>
-                                <td>IIT</td>
-                                <td>1</td>
-                                <td>Software Project Management</td>
-                           
-                                <td>
-                                    <button class="btn btn-sm btn-primary">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>DU</td>
-                                <td>IIT</td>
-                                <td>1</td>
-                                <td>Software Project Management</td>
-                               
-                                <td>
-                                    <button class="btn btn-sm btn-primary">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
-                                </td>
-                            </tr>
+                              </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

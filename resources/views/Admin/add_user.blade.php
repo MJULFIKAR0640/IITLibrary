@@ -14,12 +14,11 @@
         <div class="panel-heading"><h4><b>Add User</b></h4></div>
 
         <div class="panel-body" style="margin: 10px">
-          <form class="form-horizontal" action="{{route('storeBook')}}" method="POST">
+          <form class="form-horizontal" action="{{route('userStore')}}" method="POST">
             {{ csrf_field() }}
-
             <div style="margin-bottom: 15px" class="form-group" required>
-            	<label for="user name">User Type</label>
-              <select class="form-control" id="sel1" name="type">
+            	<label for="user type">User Type</label>
+              <select class="form-control" id="Type" name="type">
                 <option value="teacher">Teacher</option>
                 <option value="librarian">Librarian</option>          
               </select>
@@ -31,19 +30,19 @@
             </div>
 
             <div style="margin-bottom: 15px" class="form-group">
-    		  <label for="user name">User's Email</label>
+    		    <label for="user email">User's Email</label>
               <input id="user_email" type="email" class="form-control" name="email" required>       
             </div> 
 
             <div style="margin-bottom: 15px" class="form-group">
               
-              <label for="user name">User's Phone Number</label>
-              <input id="user_phone_number" type="number" class="form-control" name="phone" placeholder="Phone Number" required>       
+              <label for="user phone">User's Phone Number</label>
+              <input id="user_phone_number" type="number" class="form-control" name="phone" required>       
             </div>
 
             <div style="margin-bottom: 15px" class="form-group">
-              <label for="user name">Initial Password</label>
-              <input id="login-username" type="password" class="form-control" name="password_confirmation" placeholder="Re-type password" required>       
+              <label for="user password">Initial Password</label>
+              <input id="initial_password" type="password" class="form-control" name="password" required>       
             </div> 
 
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

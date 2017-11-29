@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use App\Issue;
+use Session;
+use Auth;
 use Illuminate\Support\Facades\DB;
+use App\Configuration;
 
 class BookController extends Controller
 {
@@ -15,7 +19,13 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $Book =DB::table('books')->get();
+        return view('Librarian.manage_book',compact('Book'));
+    }
+    public function borrow_book(Request $request, $id)
+    {
+        $Book =DB::table('books')->where('id', $id)->first();
+        return view('User.borrow_book',compact('Book'));
     }
 
     /**
@@ -27,6 +37,33 @@ class BookController extends Controller
     {
         return view('Librarian.add_book');
     }
+
+    public function book_settings(Request $request)
+    {
+        $Configuration =new Configuration();
+        $Configuration->days= $request->days;
+        $Configuration->fine= $request->fine;
+        $Configuration->save();
+        Session::flash('success', 'Book configuration has successfully set !');
+        return redirect()->route('book_settings');
+    }
+
+    public function requestBorrow(Request $request, $id)
+    {
+        $Issue =new Issue();
+        $Issue->book_id= $id;
+        $Issue->user_id= Auth::user()->id;
+        $Issue->borrow_date= $request->borrow_date;
+        $Issue->return_date= $request->return_date;
+        $Issue->status= 'requested';
+        $Issue->save();
+        Session::flash('success', 'Your request has submitted !');
+        return redirect()->route('homeUser');
+    }
+
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -59,8 +96,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -68,9 +106,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+        $book = Book::find($id)->first();
+        return view('Librarian.edit_book',compact('book'));
     }
 
     /**
@@ -82,7 +120,17 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Book = Book::find($id);
+        $Book->book_id= $request->input('book_id');
+        $Book->book_name= $request->input('book_name');
+        $Book->author= $request->input('author_name');
+        $Book->section= $request->input('section');
+        $Book->publication= $request->input('publication');
+        $Book->edition= $request->input('edition');
+        $Book->save();
+
+        Session::flash('success', 'Book edited successfully !');
+        return redirect()->route('manageBook');
     }
 
     /**
@@ -93,6 +141,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
+        session()->flash('message','Deleted successsfully');
+        return redirect()->back()->with('success','Booke deleted');
     }
 }

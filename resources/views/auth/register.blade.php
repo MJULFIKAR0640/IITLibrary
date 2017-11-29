@@ -22,15 +22,6 @@
               <input id="login-username" type="email" class="form-control" name="email" placeholder="Enter your email" required>       
             </div> 
 
-            <div style="margin-bottom: 15px" class="input-group" required>
-              <span class="input-group-addon"></span>
-              <select class="form-control" id="sel1" name="type">
-                <option>Type of user</option>
-                <option value="teacher">Teacher</option>
-                <option value="student">Student</option>          
-              </select>
-            </div>
-
             <div style="margin-bottom: 15px" class="input-group">
               <span class="input-group-addon"></span>
               <input id="login-username" type="number" class="form-control" name="phone" placeholder="Phone Number" required>       

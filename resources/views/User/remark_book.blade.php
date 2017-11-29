@@ -8,7 +8,7 @@ Manage-Book
 <div class="container-fluid">
   <div class="row">
     <main class="col-sm-12" role="main">
-      <h2 style="margin-bottom: 20px" class="text-center d-none d-sm-block">Return/Remark Book</h2>
+      <h2 style="margin-bottom: 20px" class="text-center d-none d-sm-block">Remark Book</h2>
       <hr>
     
       <div>
@@ -32,7 +32,6 @@ Manage-Book
               <td>XYZ</td>
               <td width="450" ">This book is good for database management system.ajhfufdsfadsf fbdsfdsyfiufdsmfdsg fdsgfdsfdsu yfiudshfdsfhsfg dsjbfdsfdsg</td>
                <td>
-                <button class="btn btn-sm btn-success">Return</button>
                 <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#remark">Remark</button>
               </td>
             </tr>

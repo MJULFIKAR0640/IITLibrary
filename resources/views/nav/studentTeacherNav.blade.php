@@ -2,13 +2,14 @@
 <nav class="navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li><a href="{{route('borrow_book')}}">Borrow Book</a></li>
-      <li><a href="{{route('return_or_remark_book')}}">Return/Remark Book</a></li>
+      <li><a href="{{route('homeUser')}}">Home</a></li>
+      <li><a href="{{route('remark_book')}}">Remark Book</a></li>
       <li><a href="{{route('extend_time')}}">Extend Time</a></li>
       <li><a href="{{route('reserve_book')}}">Reserve Book</a></li>
       <li><a href="{{route('request_new_book')}}">Request New Book</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li><a href="{{route('borrowed_book_list')}}">Requested / Borrowed Books</a></li>
       <!-- Authentication Links -->
       @if (Auth::guest())
         <li><a href="{{route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

@@ -14,6 +14,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function issues(){
+        return $this->hasMany(Issue::class);
+    }
+
     protected $fillable = [
         'name', 'email', 'type', 'phone', 'password',
     ];
@@ -26,5 +30,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+   
+
 }
 

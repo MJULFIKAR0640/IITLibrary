@@ -2,17 +2,16 @@
 <nav class="navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li><a href="{{route('bookSearch')}}">Search Book</a></li>
+      <li><a href="{{route('searchBookByUser')}}">Search Book</a></li>
       <li><a href="{{route('issued_book_list')}}">Issued Book List</a></li>
-      <li id="student_info" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Approve<span class="caret"></span></a>
+      <li id="student_info" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Requests <span class="badge" style="padding-left: 5px">7</span><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{{route('book_issue_approval')}}">Book Borrow</a></li>
-          <li><a href="{{route('book_return_approval')}}">Return Book</a></li>
-          <li><a href="{{route('book_remark_approval')}}">Book Remark</a></li>
-          <li><a href="{{route('time_extension_approval')}}">Time Extention</a></li>
+          <li><a href="{{route('book_issue_approval')}}">Book Issue <span class="badge" style="padding-left: 5px">7</span></a></li>
+          <li><a href="{{route('book_remark_approval')}}">Book Remark <span class="badge" style="padding-left: 5px">7</span></a></li>
+          <li><a href="{{route('time_extension_approval')}}">Time Extention <span class="badge" style="padding-left: 5px">7</span></a></li>
         </ul>
       </li>
-      <li><a href="{{route('manage_book')}}">Manage Book</a></li>
+      <li><a href="{{route('manageBook')}}">Manage Book</a></li>
       <li><a href="{{route('new_book_request')}}">New Book Requests</a></li>
 
     </ul>

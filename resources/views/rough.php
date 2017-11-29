@@ -155,3 +155,24 @@ Search-book
 =======
         @endif
 >>>>>>> master
+
+
+@foreach ($Book as $id => $value)            
+<tr>
+    <td>{{$id+1}}</td>
+    <td>{{$value->book_id}}</td>
+    <td>{{$value->book_name}}</td>            
+    <td>{{$value->author}}</td>
+    <td>{{$value->publication}}</td>
+    <td>{{$value->edition}}</td>
+    <td>
+
+        <a href="{{route('editBook',$value->id)}}"><button class="btn btn-success">Approve</button></a>
+        <form action="{{('/manageBook/'.$value->id)}}" method="GET" onclick="return confirm('Are you sure to delete?')">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <input type="submit" value="Decline" class="btn btn-danger"> 
+        </form>
+    </td>
+</tr>
+@endforeach

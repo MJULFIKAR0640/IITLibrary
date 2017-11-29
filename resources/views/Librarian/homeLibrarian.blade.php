@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	IIT-Library
+IIT-Library
 @endsection
 
 @section('content')
@@ -12,17 +12,13 @@
     <div class="row">
       <h2 style="margin-bottom: 20px" class="d-none d-sm-block text-center">Serach Book</h2>
       <hr>
-
-      <main class="col-sm-12" role="main">
-
-
-            
+      <main class="col-sm-12" role="main">   
         <div class="jumbotron">
-          <form>
+          <form action="{{route('bookSearchByLibrarian')}}" method="GET">
             <div class="form-row">
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-9">
 
-                <input type="text" class="form-control" id="usr">
+                <input type="text" class="form-control" id="usr" name="keyword">
               </div>
 
               <div class="form-group col-md-2">
@@ -30,12 +26,14 @@
               </div>
 
               <div class="container-fluid">
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Book Name</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Author's Name</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Sector</label>
+                <div class="radio"></div>
+                <label class="radio-inline"><input type="radio" checked="" value="book" name="optradio">Search by Book Name</label>
+                <label class="radio-inline"><input type="radio" value="author" name="optradio">Search by Author's Name</label>
+                <label class="radio-inline"><input type="radio" value="section" name="optradio">Search by Section</label>
               </div>
 
-              
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             </div>
           </form>
         </div>
@@ -78,9 +76,6 @@
           </div>  
         </div>
       </div>
-
-
-
       <div>
         <table class="table table-bordered table-responsive">
           <thead>

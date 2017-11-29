@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-	IIT-Library
+IIT-Library
 @endsection
 @section('content')
 
@@ -12,13 +12,13 @@
       <hr>
 
       <main class="col-sm-12" role="main">
-            
-        <div class="jumbotron">
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-10">
 
-                <input type="text" class="form-control" id="usr">
+        <div class="jumbotron">
+          <form action="{{route('bookSearchByGuest')}}" method="GET">
+            <div class="form-row">
+              <div class="form-group col-md-9">
+
+                <input type="text" class="form-control" id="usr" name="keyword">
               </div>
 
               <div class="form-group col-md-2">
@@ -26,12 +26,14 @@
               </div>
 
               <div class="container-fluid">
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Book Name</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Author's Name</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Search by Sector</label>
+                <div class="radio"></div>
+                <label class="radio-inline"><input type="radio" checked="" value="book" name="optradio">Search by Book Name</label>
+                <label class="radio-inline"><input type="radio" value="author" name="optradio">Search by Author's Name</label>
+                <label class="radio-inline"><input type="radio" value="section" name="optradio">Search by Section</label>
               </div>
 
-              
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             </div>
           </form>
         </div>
@@ -75,60 +77,39 @@
         </div>
       </div>
 
-
+      @if(count($result)>0)
 
       <div>
         <table class="table table-bordered table-responsive">
           <thead>
             <tr>
               <th>#</th>
+              <th>Section</th>
               <th>Book</th>
               <th>Athor</th>
-              <th>Publicatiion</th>
-              <th>Edition</th>
-              <th>Copy Available</th>            
-              <th>Action</th>
+              <th>Publication</th>
+              <th>Edition</th>            
+              <th>Copy Available</th> 
+              <th>Action</th>                        
             </tr>
-          </thead>
+          </thead>       
           <tbody>
+            @foreach($result as $id => $output)
             <tr>
-              <th scope="row">1</th>
-              <td>Database Management System</td>
-              <td>XYZ</td>
-              <td>Schame Series</td>
-              <td>3rd Edition</td>
-              <td>5 copies</td>
-
-              <td>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#borrow">Borrow</button>
-              </td>
+              <td>{{$id+1}}</td>
+              <td>{{$output->section}}</td>
+              <td>{{$output->book_name}}</td>
+              <td>{{$output->author}}</td>
+              <td>{{$output->publication}}</td>
+              <td>{{$output->edition}}</td>
+              <td>2</td>
+              <td><a href="{{route('login') }}"><button class="btn btn-primary">Borrow</button></a></td>
             </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Database Management System</td>
-              <td>XYZ</td>
-              <td>Schame Series</td>
-              <td>3rd Edition</td>
-              <td>5 copies</td>
-              <td>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#borrow">Borrow</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Database Management System</td>
-              <td>XYZ</td>
-              <td>Schame Series</td>
-              <td>3rd Edition</td>
-              <td>5 copies</td>
-              <td>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#borrow">Borrow</button>
-              </td>
-            </tr>
-
+            @endforeach
           </tbody>
         </table>
       </div>
+      @endif
     </main>
   </div>
 </div>
