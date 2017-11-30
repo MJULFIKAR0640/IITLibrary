@@ -14,6 +14,9 @@ Route::post('/sotreRequestedBook', [
 Route::post('/book_settings', [
 	'as' => 'book_settings', 'uses' => 'BookController@book_settings'
 ]);
+Route::post('/book_settings_update', [
+	'as' => 'book_settings_update', 'uses' => 'BookController@book_configuration_update'
+]);
 Route::post('/requestBorrow', [
 	'as' => 'requestBorrow', 'uses' => 'BookController@requestBorrow'
 ]);
@@ -47,7 +50,7 @@ Route::group(["middleware" => ['auth', 'admin']], function () {
 	]);
 	
 	Route::get('/book_settings', [
-		'as' => 'book_settings', 'uses' => 'PagesController@book_configuration'
+		'as' => 'book_settings', 'uses' => 'BookController@book_configuration'
 	]);
 	Route::get('/book_settings_update', [
 		'as' => 'book_settings_update', 'uses' => 'PagesController@book_settings_update'
@@ -83,7 +86,7 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 	]);
 
 	Route::get('/issued_book_list', [
-		'as' => 'issued_book_list', 'uses' => 'PagesController@issued_book_list'
+		'as' => 'issued_book_list', 'uses' => 'IssueController@issued_list'
 	]);
 
 	Route::get('/time_extension_approval', [
@@ -114,6 +117,10 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 	]);
 	Route::get('/approveBorrowRequest/{id}', [
 		'as' => 'approveBorrowRequest', 'uses' => 'IssueController@acceptBorrowRequest'
+	]);
+
+	Route::get('/approvereturnbook/{id}', [
+		'as' => 'approvereturnbook', 'uses' => 'IssueController@approveReturn'
 	]);
 });
 

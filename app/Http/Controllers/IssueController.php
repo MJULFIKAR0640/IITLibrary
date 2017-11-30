@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Issue;
 use Auth;
+use App\Configuration;
 
 class IssueController extends Controller
 {
@@ -35,7 +36,23 @@ class IssueController extends Controller
      */
     public function create()
     {
-        //
+        $result = Issue::where('status', 'requested')->get();
+        return view('Librarian.book_issue_approval', compact('result'));
+    }
+
+    public function issued_list()
+    {
+        $result = Issue::where('status', 'issued')->get();
+        $settings= Configuration::first();
+        return view('Librarian.issued_book_list', compact('result','settings'));   
+    }
+
+    public function approveReturn($id)
+    {
+        $issue = Issue::find($id);
+        $issue->status = 'available';
+        $issue->save();
+        return view('Librarian.issued_book_list');
     }
 
     public function decline($id)

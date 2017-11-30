@@ -48,9 +48,6 @@ class PagesController extends Controller
         return view('Admin.homeAdmin', compact('users', 'total_users', 'books', 'total_books'));
     }
 
-    public function book_settings_update(){
-        return view('Admin.book_configuration_update');
-    }
     public function add_user(){
         return view('Admin.add_user');
     }

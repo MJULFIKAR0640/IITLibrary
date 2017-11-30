@@ -33,22 +33,25 @@ Book-issue-approval
                             <tr>
                                 <td>{{$item->book->book_id}}</td>
                                 <td>{{$item->book->book_name}}</td>
-                                <td>{{$item->book->author}}</td>
-                                <td>{{$item->book->edition}}</td>
                                 <td>{{$item->user->name}}</td>
                                 <td>{{$item->user->type}}</td>
                                 <td>{{$item->user->email}}</td>
                                 <td>{{$item->borrow_date}}</td>
                                 <td>{{$item->return_date}}</td>
                                 <td>
-                                    <form action="{{('/approveBorrowRequest/'.$item->id)}}" method="GET">
+                                	@if($item->user->type == 'teacher')
+                                		<p>Not Applicable</p>
+                                	@endif
+	                                @if($item->user->type == 'student')
+	                                	@if(date_diff(date_create($item->return_date), date_create(date("Y-m-d")))->format("%R%a") >= 0)
+	                                		{{$settings->fine*(date_diff(date_create($item->return_date), date_create(date("Y-m-d")))->format("%a")+1)}}
+	                                	@endif
+                                	@endif
+                                </td>
+                                <td>
+                                    <form action="{{('/approvereturnbook/'.$item->id)}}" method="GET">
                                         {{ csrf_field() }}
-                                        <input type="submit" value="Accept" class="btn btn-success"> 
-                                    </form>
-                                    <form action="{{('/declineBorrowRequest/'.$item->id)}}" method="GET" onclick="return confirm('Are you sure to reject the request?')">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <input type="submit" value="Decline" class="btn btn-danger"> 
+                                        <input type="submit" value="Return" class="btn btn-primary"> 
                                     </form>
                                 </td>
                             </tr>

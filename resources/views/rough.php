@@ -176,3 +176,7 @@ Search-book
     </td>
 </tr>
 @endforeach
+
+
+
+{{$settings->fine*(date_diff(date_create($item->return_date), date_create(date("Y-m-d")))->format("%a")-1)}}

@@ -38,6 +38,16 @@ class BookController extends Controller
         return view('Librarian.add_book');
     }
 
+    public function book_configuration(Request $request)
+    {
+        $Configuration= Configuration::all()->first();
+        if($Configuration){
+            return view('Admin.book_configuration_update',compact('Configuration'));
+        }
+        else{
+            return view('Admin.book_configuration');
+        }
+    }
     public function book_settings(Request $request)
     {
         $Configuration =new Configuration();
@@ -45,7 +55,21 @@ class BookController extends Controller
         $Configuration->fine= $request->fine;
         $Configuration->save();
         Session::flash('success', 'Book configuration has successfully set !');
-        return redirect()->route('book_settings');
+        return redirect()->route('homeAdmin');
+    }
+
+    public function book_configuration_update(Request $request){
+        $Configuration= Configuration::all()->first();        
+        $Configuration->days= $request->input('days');
+        $Configuration->fine= $request->input('fine');
+        $Configuration->save();
+        Session::flash('success', 'Book configuration has edited successfully!');
+        return redirect()->route('homeAdmin');
+    }
+
+    public function settings_update(){
+        $Configuration= Configuration::all()->first();
+        return view('Admin.book_configuration_update',compact('Configuration'));
     }
 
     public function requestBorrow(Request $request, $id)
