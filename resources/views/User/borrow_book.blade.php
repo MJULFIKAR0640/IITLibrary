@@ -79,6 +79,3 @@ Search-book
 	</div>
 </div>
 @endsection
-
-
-

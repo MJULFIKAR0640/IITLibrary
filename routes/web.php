@@ -129,9 +129,17 @@ Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
 	Route::get('/homeUser', [
 		'as' => 'homeUser', 'uses' => 'PagesController@homeUser'
 	]);
-	Route::post('/searchBookByUser',[ 
+	Route::get('/searchBookByUser',[ 
 	 	'as' => 'searchBookByUser', 'uses'=> 'PagesController@homeUser' 
-	 ]);
+	]);	
+
+	Route::get('/searchReserveBook',[ 
+	 	'as' => 'searchReserveBook', 'uses'=> 'PagesController@searchForReserve' 
+	]);
+	Route::post('/searchBookforReserve',[ 
+	 	'as' => 'searchBookforReserve', 'uses'=> 'PagesController@searchForReserve' 
+	]);
+
 	Route::get('/request_new_book', [
 		'as' => 'request_new_book', 'uses' => 'PagesController@request_new_book'
 	]);
@@ -144,9 +152,7 @@ Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
 	Route::get('/borrow_book/{id}', [
 		'as' => 'borrow_book', 'uses' => 'BookController@borrow_book'
 	]);
-	Route::get('/reserve_book', [
-		'as' => 'reserve_book','uses' => 'PagesController@reserve_book'
-	]);
+
 	Route::get('/requestBook', [
 		'as' => 'requestBook', 'uses' => 'RequestedBookController@create'
 	]);

@@ -18,7 +18,6 @@ Search-book
           <form action="{{route('searchBookByUser')}}" method="POST">
             <div class="form-row">
               <div class="form-group col-md-9">
-
                 <input type="text" class="form-control" id="usr" name="keyword">
               </div>
 
