@@ -5,7 +5,7 @@
       <li><a href="{{route('homeUser')}}">Home</a></li>
       <li><a href="{{route('remark_book')}}">Remark Book</a></li>
       <li><a href="{{route('extend_time')}}">Extend Time</a></li>
-      <li><a href="{{route('searchReserveBook')}}">Reserve Book</a></li>
+      <li><a href="{{route('reserveBook')}}">Reserve Book</a></li>
       <li><a href="{{route('request_new_book')}}">Request New Book</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

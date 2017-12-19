@@ -57,14 +57,14 @@ Search-book
 							<center>
 								<h4>Borrow Date</h4>
 								<hr>
-								<input type="date" name="borrow_date">
+								<input type="date" name="borrow_date" required>
 							</center>	
 						</div>
 						<div class="col-md-6">
 							<center>
 								<h4>Return Date</h4>
 								<hr>
-								<input type="date" name="return_date">
+								<input type="date" name="return_date" required>
 							</center>		
 						</div>
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">

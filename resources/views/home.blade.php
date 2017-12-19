@@ -1,5 +1,4 @@
 @extends('layouts.blank')
-
 @section('title')
 IIT-Library
 @endsection
@@ -17,8 +16,7 @@ IIT-Library
           <form action="{{route('bookSearchByGuest')}}" method="GET">
             <div class="form-row">
               <div class="form-group col-md-9">
-
-                <input type="text" class="form-control" id="usr" name="keyword">
+                <input type="text" class="form-control" id="usr" name="keyword" required>
               </div>
 
               <div class="form-group col-md-2">

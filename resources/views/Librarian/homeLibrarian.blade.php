@@ -14,11 +14,11 @@ IIT-Library
       <hr>
       <main class="col-sm-12" role="main">   
         <div class="jumbotron">
-          <form action="{{route('bookSearchByLibrarian')}}" method="GET">
+          <form action="{{route('searchBookByLibrarian')}}" method="GET">
             <div class="form-row">
               <div class="form-group col-md-9">
 
-                <input type="text" class="form-control" id="usr" name="keyword">
+                <input type="text" class="form-control" id="usr" name="keyword" required>
               </div>
 
               <div class="form-group col-md-2">

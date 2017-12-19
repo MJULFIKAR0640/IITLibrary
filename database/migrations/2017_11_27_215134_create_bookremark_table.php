@@ -11,9 +11,22 @@ class CreateBookremarkTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
-        //
+         Schema::create('remarks', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('book_id')->unsigned();
+            $table->foreign('book_id')
+                ->references('id')->on('books')
+                ->ondelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->ondelete('cascade');
+            $table->date('remark');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +36,6 @@ class CreateBookremarkTable extends Migration
      */
     public function down()
     {
-        //
+         Schema::dropIfExists('remarks');
     }
 }

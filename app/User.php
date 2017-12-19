@@ -18,6 +18,15 @@ class User extends Authenticatable
         return $this->hasMany(Issue::class);
     }
 
+    public function remarks()
+    {
+        return $this->hasMany(Remarks::class);
+    }
+
+    public function requestedbooks(){
+        return $this->hasMany(Requestedbook::class);
+    }
+
     protected $fillable = [
         'name', 'email', 'type', 'phone', 'password',
     ];

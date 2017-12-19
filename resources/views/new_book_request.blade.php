@@ -37,8 +37,10 @@ Issued-book-list
 							<td>{{$value->section}}</td>
 							<td>{{$value->book_name}}</td>						
 							<td>{{$value->author}}</td>
-							<th>{{$value->publication}}</th>
-							<th>{{$value->edition}}</th>						
+							<td>{{$value->publication}}</td>
+							<td>{{$value->edition}}</td>
+							<td>{{$value->user->name}}</td>
+							<td>{{$value->user->email}}</td>						
 						</tr>
 					@endforeach
 				</tbody>

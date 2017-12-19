@@ -42,6 +42,7 @@ class UserController extends Controller
         $User->email= $request->email;
         $User->type= $request->type;
         $User->phone= $request->phone;
+        $User->status=1;
         $User->password= bcrypt($request->password);
         $User->save();
         Session::flash('success', 'User added successfully !');
@@ -81,6 +82,14 @@ class UserController extends Controller
     {
         //
     }
+
+    public function approveUser($id){
+        $user = User::find($id);
+        $user->status=1;
+        $user->save();
+        return redirect()->route('requestApproval')->with('success','Member deleted');;
+    }
+
 
     /**
      * Remove the specified resource from storage.

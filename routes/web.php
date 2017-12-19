@@ -22,6 +22,7 @@ Route::post('/requestBorrow', [
 ]);
 
 Route::get('/deleteUser/{id}','UserController@destroy');
+Route::get('/approveUser/{id}','UserController@approveUser');
 Route::get('/manageBook/{id}','BookController@destroy');
  
 Route::group(["middleware" => ['guest']], function () {
@@ -48,7 +49,6 @@ Route::group(["middleware" => ['auth', 'admin']], function () {
 	Route::get('/account_approval', [
 		'as' => 'account_approval', 'uses' => 'PagesController@account_approval'
 	]);
-	
 	Route::get('/book_settings', [
 		'as' => 'book_settings', 'uses' => 'BookController@book_configuration'
 	]);
@@ -78,11 +78,11 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 	]);
 
 	Route::get('/book_remark_approval', [
-		'as' => 'book_remark_approval', 'uses' => 'PagesController@book_remark_approval'
+		'as' => 'book_remark_approval', 'uses' => 'BookController@book_remark_approval'
 	]);
 
-	Route::get('/bookSearchByLibrarian', [
-		'as' => 'bookSearchByLibrarian', 'uses' => 'PagesController@homeLibrarian'
+	Route::get('/searchBookByLibrarian', [
+		'as' => 'searchBookByLibrarian', 'uses' => 'PagesController@homeLibrarian'
 	]);
 
 	Route::get('/issued_book_list', [
@@ -90,7 +90,7 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 	]);
 
 	Route::get('/time_extension_approval', [
-		'as' => 'time_extension_approval', 'uses' => 'PagesController@time_extension_approval'
+		'as' => 'time_extension_approval', 'uses' => 'IssueController@time_extension_approval'
 	]);
 	
 	Route::get('/book_issue_approval', [
@@ -98,7 +98,7 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 	]);
 
 	Route::get('/new_book_request', [
-		'as' => 'new_book_request', 'uses' => 'PagesController@new_book_request'
+		'as' => 'new_book_request', 'uses' => 'RequestedBookController@book_request'
 	]);
 	Route::get('/manageBook', [
 		'as' => 'manageBook', 'uses' => 'BookController@index'
@@ -118,6 +118,13 @@ Route::group(["middleware" => ['auth', 'librarian']], function () {
 	Route::get('/approveBorrowRequest/{id}', [
 		'as' => 'approveBorrowRequest', 'uses' => 'IssueController@acceptBorrowRequest'
 	]);
+	Route::get('/approveExtensionRequest/{id}', [
+		'as' => 'approveExtensionRequest', 'uses' => 'IssueController@acceptExtensionRequest'
+	]);
+
+	Route::get('/declineExtensionRequest/{id}', [
+		'as' => 'declineExtensionRequest', 'uses' => 'IssueController@rejectExtensionRequest'
+	]);
 
 	Route::get('/approvereturnbook/{id}', [
 		'as' => 'approvereturnbook', 'uses' => 'IssueController@approveReturn'
@@ -129,30 +136,31 @@ Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
 	Route::get('/homeUser', [
 		'as' => 'homeUser', 'uses' => 'PagesController@homeUser'
 	]);
-	Route::get('/searchBookByUser',[ 
+	Route::post('/searchBookByUser',[ 
 	 	'as' => 'searchBookByUser', 'uses'=> 'PagesController@homeUser' 
 	]);	
-
-	Route::get('/searchReserveBook',[ 
-	 	'as' => 'searchReserveBook', 'uses'=> 'PagesController@searchForReserve' 
+	Route::get('/reserveBook',[ 
+	 	'as' => 'reserveBook', 'uses'=> 'PagesController@searchForReserve' 
 	]);
 	Route::post('/searchBookforReserve',[ 
 	 	'as' => 'searchBookforReserve', 'uses'=> 'PagesController@searchForReserve' 
 	]);
-
 	Route::get('/request_new_book', [
 		'as' => 'request_new_book', 'uses' => 'PagesController@request_new_book'
 	]);
 	Route::get('/remark_book', [
-		'as' => 'remark_book', 'uses' => 'PagesController@remark_book'
+		'as' => 'remark_book', 'uses' => 'BookController@remark'
+	]);
+	Route::post('/remarkSave/{id}', [
+		'as' => 'remarkSave', 'uses' => 'BookController@saveRemark'
 	]);
 	Route::get('/extend_time', [
-		'as' => 'extend_time', 'uses' => 'PagesController@extend_time'
+		'as' => 'extend_time', 'uses' => 'IssueController@extend_time'
 	]);
+	Route::post('/extendTime','IssueController@requestExtraTime')->name('extendTime');
 	Route::get('/borrow_book/{id}', [
 		'as' => 'borrow_book', 'uses' => 'BookController@borrow_book'
 	]);
-
 	Route::get('/requestBook', [
 		'as' => 'requestBook', 'uses' => 'RequestedBookController@create'
 	]);
@@ -162,11 +170,9 @@ Route::group(["middleware" => ['auth', ('teacher'||'student')]] , function () {
 	Route::get('/borrowed_book_list', [
 		'as' => 'borrowed_book_list', 'uses' => 'IssueController@borrowed_list'
 	]);
-
 	Route::get('/cancelRequest/{id}', [
 		'as' => 'cancelRequest', 'uses' => 'IssueController@decline'
 	]);
-
 });
 Auth::routes();
 

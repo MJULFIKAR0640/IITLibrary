@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use App\Remark;
 use App\Issue;
 use Session;
 use Auth;
@@ -26,6 +27,11 @@ class BookController extends Controller
     {
         $Book =DB::table('books')->where('id', $id)->first();
         return view('User.borrow_book',compact('Book'));
+    }
+
+    public function book_remark_approval(){
+        $Remark = Remark::all();
+        return view('Librarian.book_remark_approval',compact('Remark'));
     }
 
     /**
@@ -75,12 +81,15 @@ class BookController extends Controller
     public function requestBorrow(Request $request, $id)
     {
         $Issue =new Issue();
+        $book= Book::where('id',$id)->first();
+        $book->book_status='requested';
         $Issue->book_id= $id;
         $Issue->user_id= Auth::user()->id;
         $Issue->borrow_date= $request->borrow_date;
         $Issue->return_date= $request->return_date;
         $Issue->status= 'requested';
         $Issue->save();
+        $book->save();
         Session::flash('success', 'Your request has submitted !');
         return redirect()->route('homeUser');
     }
@@ -170,4 +179,23 @@ class BookController extends Controller
         session()->flash('message','Deleted successsfully');
         return redirect()->back()->with('success','Booke deleted');
     }
+
+    public function remark()
+    {
+        $book=Issue::where('user_id', Auth::user()->id)->where('status','issued')->get();
+        return view('User.remark_book',compact('book'));
+    }
+
+    public function saveRemark(Request $request, $id)
+    {
+        $book=Issue::where('book_id',$id)->first();
+        $book_remark= new Remark();
+        $book_remark->book_id = $id;
+        $book_remark->remark = $request->remark;  
+        $book_remark->user_id = Auth::user()->id;
+        $book_remark->save();
+        return redirect('/remark_book');
+    }
+
+    
 }

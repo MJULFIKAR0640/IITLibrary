@@ -7,8 +7,11 @@
 	@elseif(Auth::user()->type =='librarian') 
 	    @include('nav.librarianNav') 
 	@elseif(Auth::user()->type ==('student'|| 'teacher')) 
-	    @include('nav.studentTeacherNav') 
+	    @include('nav.studentTeacherNav')
+	@else
+	@include('nav.adminNav')  
 	@endif 
+	
     <div id="app">
         @yield('content')
     </div>

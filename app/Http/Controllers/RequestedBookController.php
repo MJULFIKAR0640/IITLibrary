@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Requestedbook;
+use Auth;
 
 class RequestedBookController extends Controller
 {
@@ -16,7 +17,10 @@ class RequestedBookController extends Controller
     {
         //
     }
-
+    public function book_request(){
+        $Requestedbook = Requestedbook::all();
+        return view('new_book_request',compact('Requestedbook'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -42,6 +46,7 @@ class RequestedBookController extends Controller
         $Requestedbook->author= $request->author_name;
         $Requestedbook->publication= $request->publication;
         $Requestedbook->edition= $request->edition;
+        $Requestedbook->user_id= Auth::user()->id;
         $Requestedbook->save();
 
         return redirect()->route('requestBook')->with('message', 'Book Added!');

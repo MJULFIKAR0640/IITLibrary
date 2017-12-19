@@ -14,7 +14,7 @@ Search-book
 				<form action="{{route('searchBookforReserve')}}" method="POST">
 					<div class="form-row">
 						<div class="form-group col-md-9">
-							<input type="text" class="form-control" id="usr" name="keyword">
+							<input type="text" class="form-control" id="usr" name="keyword" required>
 						</div>
 						<div class="form-group col-md-3">
 							<button type="submit" class="btn btn-success">Search Book</button>

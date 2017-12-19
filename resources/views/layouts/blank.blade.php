@@ -2,7 +2,6 @@
 @include('inc.header')
 <!DOCTYPE html>
 <body>
-
 	@include('nav.commonNav')
 
     <div id="app">

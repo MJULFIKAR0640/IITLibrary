@@ -11,4 +11,9 @@ class Book extends Model
  	{
  		return $this->hasOne(Issue::class);
  	}   
+
+ 	public function remarks()
+    {
+        return $this->hasMany(Remark::class);
+    }
 }

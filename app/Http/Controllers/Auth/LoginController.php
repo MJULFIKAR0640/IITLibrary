@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -38,6 +39,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    protected function attemptLogin(Request $request)
+        {
+            return Auth::attempt(
+               // $this->credentials($request) + ["isActivated" => true],["isValid"=>false],
+    //            $this->credentials($request) + ["isActivated" => true, "isValid"=> true],
+                $this->credentials($request) + ["status" => 1]
+    
+            );
+        }
 
     protected function authenticated(Request $request, $user)
     {

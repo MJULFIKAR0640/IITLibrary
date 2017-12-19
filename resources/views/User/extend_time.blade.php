@@ -21,61 +21,42 @@ Extend-time
 								<th>Book</th>
 								<th>Author</th>                       
 								<th>Edition</th>
-								<th>Extend Time</th>
-								<th>Action</th>
+								<th style="text-align: center;">Extend Time & Action</th>
+
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Software Project Management</td>
-								<td>xyz</td>
-								<td>3rd Edition</td>								
-								<td>
-									<div class="form-row">
+							@foreach($result as $item)
+							<tbody> 
+								
+								<tr>
+									<td>{{$item->book->book_id}}</td>
+									<td>{{$item->book->book_name}}</td>
+									<td>{{$item->book->author}}</td>
+									<td>{{$item->book->edition}}</td>
 
-										<div class="form-group">
-											<select class="form-control" id="user_role">
-												<option>Days</option>
-												<option>1 day</option>
-												<option>2 days</option>
-												<option>3 days</option>
-												<option>4 days</option>
-												<option>5 days</option>
-												<option>6 days</option>
-											</select>
-										</div>
-									</div>
-								</td>
-								<td>
-									<button class="btn btn-sm btn-success">Submit</button>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Software Project Management</td>
-								<td>xyz</td>
-								<td>3rd Edition</td>								
-								<td>
-									<div class="form-row">
 
-										<div class="form-group">
-											<select class="form-control" id="user_role">
-												<option>Days</option>
-												<option>1 day</option>
-												<option>2 days</option>
-												<option>3 days</option>
-												<option>4 days</option>
-												<option>5 days</option>
-												<option>6 days</option>
-											</select>
-										</div>
-									</div>
-								</td>
-								<td>
-									<button class="btn btn-sm btn-success">Submit</button>
-								</td>
-							</tr>
+									<td>
+										<form action="{{route('extendTime')}}" method="POST">
+											{{ csrf_field() }}
+											<input type="hidden" name="id" value="{{$item->book->id}}">
+											<div class="form-row">
+												<div class="form-group">
+													<select class="form-control" id="extend_days" name="extend_days">
+														<option>Days</option>
+														<option value="1">1 day</option>
+														<option value="2">2 days</option>
+													</select>
+												</div>
+											</div>
+
+											<input type="submit" value="Submit" class="form-control btn btn-primary">
+										</td>
+
+									</tr>
+								</form>
+							</tbody>
+							@endforeach
 						</tbody>
 					</table>
 				</div>

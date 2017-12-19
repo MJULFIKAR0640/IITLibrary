@@ -18,15 +18,15 @@ class PagesController extends Controller
         $result = null;
         $keyword = $request->input('keyword');
         if($request->input('optradio')=="book"){
-            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
             return view('home', ['result' => $result]);
         }
         else if($request->input('optradio') == 'author'){
-            $result =DB::table('books')->where('author', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('author', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
             return view('home', ['result' => $result]);
         }
         else if($request->input('optradio')== 'section'){
-            $result =DB::table('books')->where('section', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('section', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
             return view('home', ['result' => $result]);
         }
         return view('home',['result' => $result]);
@@ -35,10 +35,7 @@ class PagesController extends Controller
     public function about(){
         return view('about');
     }
-    public function new_book_request(){
-        $Requestedbook =DB::table('requestedbooks')->get();
-        return view('new_book_request',compact('Requestedbook'));
-    }
+
 
     public function homeAdmin(){
         $users = DB::table('users')->where('type', 'student')->get();
@@ -52,7 +49,8 @@ class PagesController extends Controller
         return view('Admin.add_user');
     }
     public function requestApproval(){
-        return view('Admin.request_approve');
+        $user = User::where('type','student')->where('status','0')->get();
+        return view('Admin.request_approve',compact('user'));
     }
 
     public function homeLibrarian(Request $request){
@@ -74,20 +72,13 @@ class PagesController extends Controller
         return view('Librarian.homeLibrarian',['result' => $result]);
     }
 
-
-
-    public function time_extension_approval(){
-        return view('Librarian.time_extension_approval');
-    }
     public function account_approval(){
         return view('Librarian.account_approval');
     }
     public function book_issue_approval(){
         return view('Librarian.book_issue_approval');
     }
-    public function book_remark_approval(){
-        return view('Librarian.book_remark_approval');
-    }
+
     public function book_return_approval(){
         return view('Librarian.book_return_approval');
     }
@@ -102,15 +93,15 @@ class PagesController extends Controller
         $result = null;
         $keyword = $request->input('keyword');
         if($request->input('optradio')=="book"){
-            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
             return view('User.homeUser', ['result' => $result]);
         }
         else if($request->input('optradio') == 'author'){
-            $result =DB::table('books')->where('author', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('author', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
             return view('User.homeUser', ['result' => $result]);
         }
         else if($request->input('optradio')== 'section'){
-            $result =DB::table('books')->where('section', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('section', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
             return view('User.homeUser', ['result' => $result]);
         }
         return view('User.homeUser',['result' => $result]);
@@ -120,15 +111,15 @@ class PagesController extends Controller
         $result = null;
         $keyword = $request->input('keyword');
         if($request->input('optradio')=="book"){
-            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','issued')->get();
             return view('User.reserve_book', ['result' => $result]);
         }
         else if($request->input('optradio') == 'author'){
-            $result =DB::table('books')->where('author', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('author', 'like', '%' . $request->keyword . '%')->where('book_status','issued')->get();
             return view('User.reserve_book', ['result' => $result]);
         }
         else if($request->input('optradio')== 'section'){
-            $result =DB::table('books')->where('section', 'like', '%' . $request->keyword . '%')->where('book_status','available')->get();
+            $result =DB::table('books')->where('section', 'like', '%' . $request->keyword . '%')->where('book_status','issued')->get();
             return view('User.reserve_book', ['result' => $result]);
         }
         return view('User.reserve_book',['result' => $result]);
@@ -138,9 +129,7 @@ class PagesController extends Controller
     public function request_new_book(){
         return view('User.request_new_book');
     }
-    public function remark_book(){
-        return view('User.remark_book');
-    }
+
     public function reserve_book(){
         return view('User.reserve_book');
     }

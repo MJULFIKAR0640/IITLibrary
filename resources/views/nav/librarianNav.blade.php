@@ -2,7 +2,7 @@
 <nav class="navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li><a href="{{route('searchBookByUser')}}">Search Book</a></li>
+      <li><a href="{{route('searchBookByLibrarian')}}">Search Book</a></li>
       <li><a href="{{route('issued_book_list')}}">Issued Book List</a></li>
       <li id="student_info" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Requests <span class="badge" style="padding-left: 5px">7</span><span class="caret"></span></a>
         <ul class="dropdown-menu">
