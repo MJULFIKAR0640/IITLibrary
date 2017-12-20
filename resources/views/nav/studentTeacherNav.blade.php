@@ -18,7 +18,7 @@
       <li id="student_info" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class=" glyphicon glyphicon-user" style="padding-right: 5px"></span><span  style="padding-right: 5px">{{ Auth::user()->name }}</span><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li>
-            <a href="{{route('password.request')}}"><span>Reset Password</span></a>
+            <a href="{{route('password.request')}}"><span>Change Password</span></a>
           </li>
           <li>
             <a href="{{ route('logout') }}"

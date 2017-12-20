@@ -33,7 +33,9 @@ Manage-Book
               <td> 
                 <ul>
                   @foreach($item->book->remarks as $remark)
-                  <li>{{$remark->remark}}</li>
+                    @if($remark->remark_status == 'approved')
+                      <li>{{$remark->remark}}</li>
+                    @endif
                   @endforeach
 
                 </ul>

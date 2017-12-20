@@ -8,6 +8,7 @@ use App\Book;
 use Auth;
 use App\Configuration;
 use Carbon\Carbon;
+use App\Reservation;
 
 class IssueController extends Controller
 {
@@ -39,6 +40,22 @@ class IssueController extends Controller
 
     public function issued_list()
     {
+        $reserves = Reservation::all();
+        foreach ($reserves as $key => $reserve) {
+            $issue = Issue::where('book_id', $reserve->book_id)->first();
+            if(count($issue)>0){
+                if($issue->status == 'available' && $reserve->start_date <= Carbon::today()->toDateString() && $reserve->end_date >= Carbon::today()->toDateString() ){
+                    $issue->user_id = $reserve->user_id;
+                    $issue->borrow_date = Carbon::today()->toDateString();
+                    $issue->return_date = Carbon::today()->addDays(3)->toDateString();
+                    $issue->status = 'requested';
+                    $issue->save();
+                    /*email to user*/
+                    Reservation::destroy($reserve->id);
+                }
+            }
+        }
+
         $result = Issue::where('status', 'issued')->get();
         $settings= Configuration::first();
         return view('Librarian.issued_book_list', compact('result','settings'));   
@@ -47,20 +64,21 @@ class IssueController extends Controller
     public function approveReturn($id)
     {
         $issue = Issue::find($id);
+        $book = Book::where('id', $issue->book->id)->first();
+        $book->book_status = 'available';
         $issue->status = 'available';
         $issue->save();
-        return view('Librarian.issued_book_list');
+        $book->save();
+        $notification = array(
+                    'message' => 'Priority Value Updated successfully. See the recommended jobs',
+                    'alert-type' => 'success'
+                );
+        return redirect('/issued_book_list')->with($notification);
     }
 
-    public function decline($id)
-    {
-        $issue = Issue::find($id);
-        $issue->status='available';
-        session()->flash('message','Request rejected successsfully');
-        return redirect()->back()->with('success','Request Rejected');
-    }
+    
 
-    public function index()
+    public function book_issue_approval()
     {
         $result = Issue::where('status', 'requested')->get();
         return view('Librarian.book_issue_approval', compact('result'));
@@ -69,13 +87,25 @@ class IssueController extends Controller
     public function acceptBorrowRequest($id)
     {
         $issue = Issue::find($id);
-        $book = Book::where('id', $issue->book_id)->first();
+        $book = Book::where('id', $issue->book->id)->first();
         $book->book_status = 'issued';
         $issue->status = 'issued';
         $issue->save();
         $book->save();
         return redirect('/book_issue_approval');
     }
+
+    public function rejectBorrowRequest($id)
+    {
+        $issue = Issue::find($id);
+        $book = Book::where('id', $issue->book->id)->first();
+        $book->book_status = 'available';
+        $issue->status = 'available';
+        $issue->save();
+        $book->save();
+        return redirect('/book_issue_approval');
+    }
+
 
     public function requestExtraTime(Request $request)
     {

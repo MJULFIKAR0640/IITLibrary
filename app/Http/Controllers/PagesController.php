@@ -129,10 +129,6 @@ class PagesController extends Controller
     public function request_new_book(){
         return view('User.request_new_book');
     }
-
-    public function reserve_book(){
-        return view('User.reserve_book');
-    }
     public function borrow_book(){
         return view('User.borrow_book');
     }

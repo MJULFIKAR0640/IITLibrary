@@ -65,7 +65,7 @@ Manage-Book
                                 <td>
 
                                     <a href="{{route('editBook',$value->id)}}"><button class="btn btn-primary">Edit</button></a>
-                                    <form action="{{('/manageBook/'.$value->id)}}" method="GET" onclick="return confirm('Are you sure to delete?')">
+                                    <form action="{{('/deletebook/'.$value->id)}}" method="GET" onclick="return confirm('Are you sure to delete?')">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <input type="submit" value="Delete" class="btn btn-danger"> 

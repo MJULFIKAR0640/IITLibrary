@@ -87,7 +87,6 @@ IIT-Library
               <th>Athor</th>
               <th>Publication</th>
               <th>Edition</th>            
-              <th>Copy Available</th> 
               <th>Action</th>                        
             </tr>
           </thead>       
@@ -100,7 +99,6 @@ IIT-Library
               <td>{{$output->author}}</td>
               <td>{{$output->publication}}</td>
               <td>{{$output->edition}}</td>
-              <td>2</td>
               <td><a href="{{route('login') }}"><button class="btn btn-primary">Borrow</button></a></td>
             </tr>
             @endforeach

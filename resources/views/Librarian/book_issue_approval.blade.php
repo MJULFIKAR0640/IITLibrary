@@ -48,8 +48,7 @@ Book-issue-approval
                                     </form>
                                     <form action="{{('/declineBorrowRequest/'.$item->id)}}" method="GET" onclick="return confirm('Are you sure to reject the request?')">
                                         {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <input type="submit" value="Decline" class="btn btn-danger"> 
+                                        <button type="submit" class="btn btn-danger">Decline</button>
                                     </form>
                                 </td>
                             </tr>

@@ -12,11 +12,11 @@ class Remark extends Model
         'book_id', 'user_id', 'remark',
     ];
     
-    public function books()
+    public function book()
  	{
- 		return $this->belongsTo(Boook::class);
+ 		return $this->belongsTo(Book::class);
  	} 
- 	public function users()
+ 	public function user()
  	{
  		return $this->belongsTo(User::class);
  	} 

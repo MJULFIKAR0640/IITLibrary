@@ -1,10 +1,8 @@
 @extends('layouts.app')
-
 @section('title')
 Search-book
 @endsection
 @section('content')
-
 
 </br>
 <div class="container-fluid">
@@ -18,7 +16,7 @@ Search-book
           <form action="{{route('searchBookByUser')}}" method="POST">
             <div class="form-row">
               <div class="form-group col-md-9">
-                <input type="text" class="form-control" id="usr" name="keyword">
+                <input type="text" class="form-control" id="usr" name="keyword" required>
               </div>
 
               <div class="form-group col-md-2">
@@ -50,7 +48,6 @@ Search-book
               <th>Athor</th>
               <th>Publication</th>
               <th>Edition</th>            
-              <th>Copy Available</th> 
               <th>Action</th>                        
             </tr>
           </thead>       
@@ -63,7 +60,6 @@ Search-book
               <td>{{$output->author}}</td>
               <td>{{$output->publication}}</td>
               <td>{{$output->edition}}</td>
-              <td>2</td>
               <td><a href="{{url('borrow_book/'.$output->id)}}" class="btn btn-primary">Borrow</a></td>
             </tr>
 

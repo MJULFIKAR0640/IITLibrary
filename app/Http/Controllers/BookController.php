@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Book;
 use App\Remark;
 use App\Issue;
+use App\Reservation;
 use Session;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -29,9 +30,21 @@ class BookController extends Controller
         return view('User.borrow_book',compact('Book'));
     }
 
-    public function book_remark_approval(){
-        $Remark = Remark::all();
-        return view('Librarian.book_remark_approval',compact('Remark'));
+    public function reserve_request(Request $request, $id)
+    {
+        $book = Book::find($id);
+        return view('User.reserve_request',compact('book'));
+    }
+
+    public function reserve(Request $request, $id)
+    {
+        $book=new Reservation();
+        $book->book_id = $id;
+        $book->user_id = Auth::user()->id;  
+        $book->start_date=$request->start_date;
+        $book->end_date=$request->end_date;
+        $book->save();
+        return redirect('/reserveBook');
     }
 
     /**
@@ -188,7 +201,7 @@ class BookController extends Controller
 
     public function saveRemark(Request $request, $id)
     {
-        $book=Issue::where('book_id',$id)->first();
+        $book=Issue::where('book_id',$id)->where('status','issued')->first();
         $book_remark= new Remark();
         $book_remark->book_id = $id;
         $book_remark->remark = $request->remark;  
@@ -197,5 +210,21 @@ class BookController extends Controller
         return redirect('/remark_book');
     }
 
-    
+    public function book_remark_approval(){
+        $remark_result = Remark::where('remark_status','requested')->get();
+        return view('Librarian.book_remark_approval',compact('remark_result'));
+    }
+
+    public function approveRemark($id){
+        $result = Remark::where('id',$id)->first();
+        $result->remark_status= 'approved';
+        $result->save();
+        return redirect('/book_remark_approval');
+    }
+
+    public function rejectRemark($id){
+        $result = Remark::where('id',$id)->first();
+        $result->delete();
+        return redirect('/book_remark_approval');
+    }
 }

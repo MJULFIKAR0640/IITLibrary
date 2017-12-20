@@ -1,0 +1,10 @@
+#app{
+   background: url("../img/1.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+ }
+
+ table{
+ 	background-color: #fff;
+ }

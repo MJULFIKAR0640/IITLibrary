@@ -16,4 +16,9 @@ class Book extends Model
     {
         return $this->hasMany(Remark::class);
     }
+
+    public function reserves()
+    {
+        return $this->hasMany(Resevation::class);
+    }
 }

@@ -27,6 +27,11 @@ class User extends Authenticatable
         return $this->hasMany(Requestedbook::class);
     }
 
+    public function reserves()
+    {
+        return $this->hasMany(Resevation::class);
+    }
+
     protected $fillable = [
         'name', 'email', 'type', 'phone', 'password',
     ];

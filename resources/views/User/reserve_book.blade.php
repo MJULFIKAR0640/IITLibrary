@@ -52,7 +52,7 @@ Search-book
 			        <td>{{$output->author}}</td>
 			        <td>{{$output->publication}}</td>
 			        <td>{{$output->edition}}</td>
-			        <td><a href="" class="btn btn-primary">Reserve</a></td>
+			        <td><a href="{{url('reserve_request/'.$output->id)}}" class="btn btn-primary">Reserve</a></td>
 			      </tr>
 
 			      @endforeach
