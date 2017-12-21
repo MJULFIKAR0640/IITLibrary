@@ -24,7 +24,7 @@ IIT-Library
       </div>
     </div>
 
-    <div class="col-md-6 col-md-offset-3" style="margin-top: 20px" >
+    {{-- <div class="col-md-6 col-md-offset-3" style="margin-top: 20px" >
       <div class="bg-info text-white">
         <div class="panel-body">
           <div class="row">
@@ -38,7 +38,7 @@ IIT-Library
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <div class="col-md-6 col-md-offset-3" style="margin-top: 20px">
       <div class="bg-info text-white">
         <div class="panel-body">

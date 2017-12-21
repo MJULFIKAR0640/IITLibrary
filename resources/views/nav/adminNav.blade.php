@@ -5,7 +5,7 @@
       <li><a href="{{ route('homeAdmin') }}">Home</a></li>
       <li id="student_info" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span style="padding-right: 5px">User Management</span><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{{ route('requestApproval') }}">Request Approval <span class="badge">7</span></a></li>
+          <li><a href="{{ route('requestApproval') }}">Request Approval</a></li>
           <li><a href="{{ route('add_user') }}">Add User</a></li>
           <li><a href="{{ route('deleteUser') }}">Delete User</a></li>    
         </ul>

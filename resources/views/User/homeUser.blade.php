@@ -43,6 +43,7 @@ Search-book
           <thead>
             <tr>
               <th>#</th>
+              <th>Book Id</th>
               <th>Section</th>
               <th>Book</th>
               <th>Athor</th>
@@ -55,6 +56,7 @@ Search-book
             @foreach($result as $id => $output)
             <tr>
               <td>{{$id+1}}</td>
+              <td>{{$output->book_id}}</td>
               <td>{{$output->section}}</td>
               <td>{{$output->book_name}}</td>
               <td>{{$output->author}}</td>

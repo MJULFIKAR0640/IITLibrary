@@ -43,7 +43,7 @@ class UserController extends Controller
         $User->type= $request->type;
         $User->phone= $request->phone;
         $User->status=1;
-        $User->password= bcrypt($request->password);
+        $User->password= bcrypt('iit123');
         $User->save();
         Session::flash('success', 'User added successfully !');
         return redirect()->route('add_user');

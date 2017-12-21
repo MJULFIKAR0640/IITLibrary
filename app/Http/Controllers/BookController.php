@@ -121,12 +121,12 @@ class BookController extends Controller
     {
         $Book =new Book();
         $Book->book_id= $request->book_id;
-
         $Book->book_name= $request->book_name;
         $Book->author= $request->author_name;
         $Book->section= $request->section;
         $Book->publication= $request->publication;
         $Book->edition= $request->edition;
+        $Book->book_status= 'available';
         $Book->save();
 
         Session::flash('success', 'Book added successfully !');
@@ -206,6 +206,7 @@ class BookController extends Controller
         $book_remark->book_id = $id;
         $book_remark->remark = $request->remark;  
         $book_remark->user_id = Auth::user()->id;
+        $book_remark->remark_status='requested';
         $book_remark->save();
         return redirect('/remark_book');
     }

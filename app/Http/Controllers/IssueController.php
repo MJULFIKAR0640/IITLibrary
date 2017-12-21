@@ -34,7 +34,7 @@ class IssueController extends Controller
 
     public function extend_time()
     {
-        $result = Issue::where('status', 'issued')->where('extend_date', null)->get();
+        $result = Issue::where('status', 'issued')->where('extend_date', null)->where('user_id', Auth::user()->id)->get();
         return view('User.extend_time', compact('result'));
     }
 

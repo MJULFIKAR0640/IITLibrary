@@ -18,15 +18,15 @@ class PagesController extends Controller
         $result = null;
         $keyword = $request->input('keyword');
         if($request->input('optradio')=="book"){
-            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','requested')->get();
             return view('home', ['result' => $result]);
         }
         else if($request->input('optradio') == 'author'){
-            $result =DB::table('books')->where('author', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','requested')->get();
             return view('home', ['result' => $result]);
         }
         else if($request->input('optradio')== 'section'){
-            $result =DB::table('books')->where('section', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','requested')->get();
             return view('home', ['result' => $result]);
         }
         return view('home',['result' => $result]);
@@ -93,15 +93,15 @@ class PagesController extends Controller
         $result = null;
         $keyword = $request->input('keyword');
         if($request->input('optradio')=="book"){
-            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','requested')->get();
             return view('User.homeUser', ['result' => $result]);
         }
         else if($request->input('optradio') == 'author'){
-            $result =DB::table('books')->where('author', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','requested')->get();
             return view('User.homeUser', ['result' => $result]);
         }
         else if($request->input('optradio')== 'section'){
-            $result =DB::table('books')->where('section', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_status','requested')->get();
+            $result =DB::table('books')->where('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','available')->orWhere('book_name', 'like', '%' . $request->keyword . '%')->where('book_status','requested')->get();
             return view('User.homeUser', ['result' => $result]);
         }
         return view('User.homeUser',['result' => $result]);

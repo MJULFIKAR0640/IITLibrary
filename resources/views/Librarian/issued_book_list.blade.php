@@ -44,7 +44,7 @@ Book-issue-approval
                                 	@endif
 	                                @if($item->user->type == 'student')
 	                                	@if(date_diff(date_create($item->return_date), date_create(date("Y-m-d")))->format("%R%a") >= 0)
-	                                		{{$settings->fine*(date_diff(date_create($item->return_date), date_create(date("Y-m-d")))->format("%a")+1)}}
+	                                		{{$settings->fine*(date_diff(date_create($item->return_date), date_create(date("Y-m-d")))->format("%a"))}}
 	                                	@endif
                                 	@endif
                                 </td>

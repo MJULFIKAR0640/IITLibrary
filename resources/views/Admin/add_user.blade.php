@@ -40,11 +40,6 @@
               <input id="user_phone_number" type="number" class="form-control" name="phone" required>       
             </div>
 
-            <div style="margin-bottom: 15px" class="form-group">
-              <label for="user password">Initial Password</label>
-              <input id="initial_password" type="password" class="form-control" name="password" required>       
-            </div> 
-
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <center>
