@@ -87,7 +87,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->status=1;
         $user->save();
-        return redirect()->route('requestApproval')->with('success','Member deleted');;
+        return redirect()->route('requestApproval')->with('success','Member added');;
     }
 
 
